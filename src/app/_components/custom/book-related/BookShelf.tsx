@@ -78,8 +78,16 @@ const Book = () => {
 };
 
 export const BookShelf = () => {
+  // This bookshelf prop should take it these values
+  // - Booktitle
+  // - Bookcover
+  // - Description
+  // - BookLink
+  // - Collection title - this will be passed to the collection title component within the bookshelf
+  
   return (
     <Container
+    component="section"
       sx={{
         height: "280px",
         backgroundColor: theme.palette.primary.main,
@@ -98,6 +106,10 @@ export const BookShelf = () => {
           gap: "16px",
           width: "100%",
           overflowX: "auto",
+          scrollbarWidth: "none", // For Firefox
+          "&::-webkit-scrollbar": {
+            display: "none", // For Chrome, Safari, and Opera
+          },
         }}
       >
         <Book />

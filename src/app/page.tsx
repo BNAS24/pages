@@ -14,6 +14,7 @@ export default function Home() {
         }}
       >
         <Typography
+          component="h1"
           variant="h3"
           align="center"
           fontWeight={headingTextSize}
@@ -26,7 +27,7 @@ export default function Home() {
       </Container>
 
       <Container
-      disableGutters={true}
+        disableGutters={true}
         sx={{
           display: "flex",
           flexDirection: "column",
