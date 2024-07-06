@@ -1,7 +1,8 @@
 import { Container, Skeleton, Typography } from "@mui/material";
 import { theme } from "../../../_styles/muiTheme";
+import Image from "next/image";
 
-const CollectionTitle = () => {
+const CollectionTitle = ({ title }: any) => {
   const fontSize = "1.5rem";
 
   return (
@@ -16,13 +17,13 @@ const CollectionTitle = () => {
           fontSize: fontSize,
         }}
       >
-        Title Component
+        {title ? title : "Title Component"}
       </Typography>
     </Container>
   );
 };
 
-const Book = () => {
+const Book = ({ title, bookCover }: any) => {
   // book variable will actually be a react state variable
   const book = false;
   const titleFontSize = "0.8rem";
@@ -39,6 +40,7 @@ const Book = () => {
       <Container
         disableGutters={true}
         sx={{
+          position: "relative",
           display: "flex",
           flexShrink: 0,
           width: "88px",
@@ -47,8 +49,13 @@ const Book = () => {
         }}
       >
         {/*This will actually be rendered while the books are being fetched from the api*/}
-        {book ? (
-          "Hello, world"
+        {bookCover ? (
+          <Image
+            src={bookCover}
+            alt={title}
+            fill
+            style={{ height: "100%", width: "100%" }}
+          />
         ) : (
           <Skeleton
             variant="rectangular"
@@ -71,23 +78,24 @@ const Book = () => {
           textOverflow: "ellipsis",
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        {title ? title : "Title of Book Title of Book Title of Book"}
       </Typography>
     </Container>
   );
 };
 
-export const BookShelf = () => {
+export const BookShelf = ({ collectionTitle, bookList }: any) => {
   // This bookshelf prop should take it these values
   // - Booktitle
   // - Bookcover
   // - Description
   // - BookLink
   // - Collection title - this will be passed to the collection title component within the bookshelf
-  
+
+  console.log("bookshelf list", bookList);
   return (
     <Container
-    component="section"
+      component="section"
       sx={{
         height: "280px",
         backgroundColor: theme.palette.primary.main,
@@ -95,13 +103,13 @@ export const BookShelf = () => {
         overflow: "hidden  ",
       }}
     >
-      <CollectionTitle />
+      <CollectionTitle title={collectionTitle} />
       <Container
         disableGutters={true}
         maxWidth={false}
         sx={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "start",
           justifyContent: "space-between",
           gap: "16px",
           width: "100%",
@@ -112,12 +120,28 @@ export const BookShelf = () => {
           },
         }}
       >
-        <Book />
-        <Book />
-        <Book />
-        <Book />
-        <Book />
-        <Book />
+        {bookList ? (
+          bookList.map((book: any) => (
+            <Book
+              key={book.id}
+              title={book.volumeInfo.title}
+              bookCover={book.volumeInfo.imageLinks?.thumbnail}
+            />
+          ))
+        ) : (
+          <>
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+            <Book />
+          </>
+        )}
       </Container>
     </Container>
   );

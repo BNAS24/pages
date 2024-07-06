@@ -2,9 +2,35 @@
 import { Container, Typography } from "@mui/material";
 import { theme } from "./_styles/muiTheme";
 import { BookShelf } from "./_components/custom/book-related/BookShelf";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const headingTextSize = 700;
+  const [bookList, setBookList] = useState([]);
+
+  useEffect(() => {
+    // Fetches a book list from the google book api
+    const fetchBookCollectionTest = async () => {
+      try {
+        const response = await fetch(
+          `https://www.googleapis.com/books/v1/volumes?q=subject:juvenile%20fiction`
+        );
+
+        if (!response.ok) {
+          console.error("Error fetching books from Google Books API");
+          return;
+        }
+
+        const books = await response.json();
+        setBookList(books.items || []);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchBookCollectionTest();
+  }, []);
+
+  console.log("book list", bookList);
 
   return (
     <Container disableGutters={true}>
@@ -17,7 +43,7 @@ export default function Home() {
           component="h1"
           variant="h3"
           align="center"
-          fontWeight={headingTextSize}
+          fontWeight={700}
           sx={{
             color: theme.palette.primary.main,
           }}
@@ -37,7 +63,7 @@ export default function Home() {
         }}
       >
         {/*These bookshelves will be dynamically mapped with books fetched from the server using the google book api */}
-        <BookShelf />
+        <BookShelf collectionTitle="Kids" bookList={bookList} />
         <BookShelf />
         <BookShelf />
         <BookShelf />
