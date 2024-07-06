@@ -39,13 +39,12 @@ const Book = () => {
       <Container
         disableGutters={true}
         sx={{
-          // width: "33.33%" ,
           display: "flex",
           flexShrink: 0,
           width: "88px",
           aspectRatio: "2 / 3",
           backgroundColor: "white",
-        }}   
+        }}
       >
         {/*This will actually be rendered while the books are being fetched from the api*/}
         {book ? (
@@ -61,8 +60,18 @@ const Book = () => {
           />
         )}
       </Container>
-      <Typography align="center" sx={{ fontSize: titleFontSize }}>
-        Title of Book Title of Book Title of Book
+      <Typography
+        align="center"
+        sx={{
+          fontSize: titleFontSize,
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </Typography>
     </Container>
   );
