@@ -26,7 +26,7 @@ const CollectionTitle = ({ title }: any) => {
 const Book = ({ title, bookCover }: any) => {
   // book variable will actually be a react state variable
   const book = false;
-  const titleFontSize = "0.8rem";
+  const titleFontSize = "1rem";
 
   return (
     <Container
