@@ -12,7 +12,7 @@ export default function Home() {
     const fetchBookCollectionTest = async () => {
       try {
         const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=subject:juvenile%20fiction`
+          `https://www.googleapis.com/books/v1/volumes?q=subject:juvenile%20fiction&maxResults=40`
         );
 
         if (!response.ok) {
@@ -21,7 +21,13 @@ export default function Home() {
         }
 
         const books = await response.json();
-        setBookList(books.items || []);
+
+        // Filter out books that don't have required fields
+        const completeBooks = books.items.filter(
+          (book: any) => book.volumeInfo.imageLinks && book.volumeInfo.previewLink
+        );
+
+        setBookList(completeBooks);
       } catch (error) {
         console.error("Error:", error);
       }
