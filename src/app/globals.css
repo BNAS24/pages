@@ -23,3 +23,17 @@
 .horizontal-line {
   border: 1px solid #FFA600;
 }
+
+/* ::-webkit-scrollbar {
+  margin: 1em auto;
+  width: 1rem;
+  height: "auto";
+  background-color: #DFE2F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 16px;
+  width: 0.5rem;
+  height: 1rem;
+} */

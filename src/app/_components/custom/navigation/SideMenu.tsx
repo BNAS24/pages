@@ -152,6 +152,8 @@ export const SideMenu = () => {
             disableElevation={true}
             variant="outlined"
             sx={{
+              flexGrow: 0,
+              flexShrink: 0,
               minWidth: "92px",
               borderRadius: "2rem",
             }}
@@ -162,6 +164,8 @@ export const SideMenu = () => {
             disableElevation={true}
             variant="contained"
             sx={{
+              flexGrow: 0,
+              flexShrink: 0,
               minWidth: "92px",
               borderRadius: "2rem",
             }}

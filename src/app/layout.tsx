@@ -49,7 +49,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
       sx={{
         ...bodyStyles,
         minHeight: "100vh",
-        fontFamily: " Roboto, Open Sans, sans-serif",
+        fontFamily: "Roboto, Open Sans, sans-serif",
       }}
     >
       <NavBar />
