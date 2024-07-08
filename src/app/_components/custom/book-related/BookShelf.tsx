@@ -85,14 +85,7 @@ const Book = ({ title, bookCover }: any) => {
 };
 
 export const BookShelf = ({ collectionTitle, bookList }: any) => {
-  // This bookshelf prop should take it these values
-  // - Booktitle
-  // - Bookcover
-  // - Description
-  // - BookLink
-  // - Collection title - this will be passed to the collection title component within the bookshelf
 
-  console.log("bookshelf list", bookList);
   return (
     <Container
       component="section"

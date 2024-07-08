@@ -24,7 +24,10 @@ export default function Home() {
 
         // Filter out books that don't have required fields
         const completeBooks = books.items.filter(
-          (book: any) => book.volumeInfo.imageLinks && book.volumeInfo.previewLink
+          (book: any) =>
+            book.volumeInfo.imageLinks &&
+            book.volumeInfo.previewLink &&
+            book.volumeInfo.language === "en",
         );
 
         setBookList(completeBooks);

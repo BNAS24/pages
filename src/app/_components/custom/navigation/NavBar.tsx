@@ -5,6 +5,7 @@ import BrandLogo from "./BrandLogo";
 import HamburgerMenu from "./HamburgerMenu";
 
 export const NavBar = () => {
+  
   return (
     <Container
       component="nav"
