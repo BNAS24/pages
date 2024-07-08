@@ -119,18 +119,9 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
             />
           ))
         ) : (
-          <>
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-          </>
+          Array.from({ length: 8 }).map((_, index) => (
+            <Book key={index} />
+          ))
         )}
       </Container>
     </Container>
