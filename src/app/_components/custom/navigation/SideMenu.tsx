@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
@@ -46,14 +46,88 @@ export const SideMenu = () => {
         maxWidth={false}
         sx={{
           // Margins needed to be set manually to override the mui containers default properties
-          mr: "unset",
-          ml: "auto",
           width: "80%",
           height: "100%",
+          mr: "unset",
+          ml: "auto",
           borderTop: `1px solid ${theme.palette.secondary.main}`,
           backgroundColor: theme.palette.primary.main,
         }}
-      ></Container>
+      >
+        <Container
+          disableGutters={true}
+          maxWidth={false}
+          sx={{
+            padding: "1rem 1rem",
+          }}
+        >
+          {/*There will be only one typography component that will be mapped dynamically to*/}
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+              fontSize: "2rem",
+            }}
+          >
+            Editor&apos;s Choice
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+              fontSize: "2rem",
+            }}
+          >
+            Kids
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+              fontSize: "2rem",
+            }}
+          >
+            thrillers
+          </Typography>
+          <Typography
+            sx={{
+              color: theme.palette.secondary.main,
+              fontSize: "2rem",
+            }}
+          >
+            Romance
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+              fontSize: "2rem",
+            }}
+          >
+            Self-Help
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+
+              fontSize: "2rem",
+            }}
+          >
+            Psychology
+          </Typography>
+          <Typography
+            noWrap
+            sx={{
+              color: theme.palette.secondary.main,
+
+              fontSize: "2rem",
+            }}
+          >
+            More Subjects
+          </Typography>
+        </Container>
+      </Container>
     </SideMenuContainer>
   );
 };
