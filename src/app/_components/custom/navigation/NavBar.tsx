@@ -1,8 +1,8 @@
 "use client";
 import Container from "@mui/material/Container";
 import { theme } from "../../../_styles/muiTheme";
-import BrandLogo from "./BrandLogo";
-import HamburgerMenu from "./HamburgerMenu";
+import BrandLogo from "../buttons/BrandLogo";
+import HamburgerMenu from "../buttons/HamburgerMenu";
 
 export const NavBar = () => {
   return (

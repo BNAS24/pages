@@ -3,6 +3,8 @@ import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
 import { theme } from "@/app/_styles/muiTheme";
+import { navigationLinks } from "@/app/_assets/NavLinks";
+import Link from "next/link";
 
 const SideMenuContainer = animated(Container);
 
@@ -65,71 +67,29 @@ export const SideMenu = () => {
             padding: "1rem 1rem",
           }}
         >
-          {/*There will be only one typography component that will be mapped dynamically to*/}
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-              fontSize: "2rem",
-            }}
-          >
-            Editor&apos;s Choice
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-              fontSize: "2rem",
-            }}
-          >
-            Kids
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-              fontSize: "2rem",
-            }}
-          >
-            Thrillers
-          </Typography>
-          <Typography
-            sx={{
-              color: theme.palette.secondary.main,
-              fontSize: "2rem",
-            }}
-          >
-            Romance
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-              fontSize: "2rem",
-            }}
-          >
-            Self-Help
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-
-              fontSize: "2rem",
-            }}
-          >
-            Psychology
-          </Typography>
-          <Typography
-            noWrap
-            sx={{
-              color: theme.palette.secondary.main,
-
-              fontSize: "2rem",
-            }}
-          >
-            More Subjects
-          </Typography>
+          {/*List of navigation links*/}
+          {/*Make sure to wrap the typograph with a next link*/}
+          {navigationLinks &&
+            navigationLinks.map((linkData: any) => (
+              <Link
+                key={linkData.title}
+                onClick={handleMenuOpen}
+                href={linkData.path}
+                style={{
+                  all: "unset",
+                }}
+              >
+                <Typography
+                  noWrap
+                  sx={{
+                    color: theme.palette.secondary.main,
+                    fontSize: "2rem",
+                  }}
+                >
+                  {linkData.title}
+                </Typography>
+              </Link>
+            ))}
         </Container>
 
         {/*Horizontal line */}
@@ -146,6 +106,7 @@ export const SideMenu = () => {
             alignItems: "center",
             gap: "1rem",
             paddingY: "1rem",
+            width: "100%",
           }}
         >
           <Button
