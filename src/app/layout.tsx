@@ -4,20 +4,13 @@ import { Container } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-// import type { Metadata } from "next";
-import "./globals.css";
-import { theme } from "./_styles/muiTheme";
-import { NavBar } from "./_components/custom/navigation/NavBar";
 import { Suspense } from "react";
 import Loading from "./_components/custom/loading/Loading";
+import { NavBar } from "./_components/custom/navigation/NavBar";
 import { SideMenu } from "./_components/custom/navigation/SideMenu";
 import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
-import Head from "next/head";
-
-// export const metadata: Metadata = {
-//   title: "Pages",
-//   description: "Read your favorite books anywhere!",
-// };
+import { theme } from "./_styles/muiTheme";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -26,10 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <title>Pages</title>
         <meta name="description" content="Read your favorite books anywhere!" />
-      </Head>
+      </head>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <MenuProvider>
