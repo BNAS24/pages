@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import Loading from "./_components/custom/loading/Loading";
 import { SideMenu } from "./_components/custom/navigation/SideMenu";
 import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
+import Head from "next/head";
 
 // export const metadata: Metadata = {
 //   title: "Pages",
@@ -25,6 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <title>Pages</title>
+        <meta name="description" content="Read your favorite books anywhere!" />
+      </Head>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <MenuProvider>
@@ -50,7 +55,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
       disableGutters={true}
       sx={{
         ...bodyStyles,
-        position: "relative",
+        minHeight: "100vh",
       }}
     >
       <NavBar />

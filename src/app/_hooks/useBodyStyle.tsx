@@ -5,6 +5,7 @@ interface NavigationState {
   position?: string;
   inset?: number | string;
   overflow?: string;
+  overflowY?: string;
 }
 
 type MenuContextType = {
@@ -25,7 +26,7 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
   // Update bodyStyles whenever menuOpen changes
   useEffect(() => {
     if (menuOpen) {
-      setBodyStyles({ position: "fixed", inset: 0, overflow: "hidden" });
+      setBodyStyles({ position: "fixed", inset: 0, overflowY: "hidden" });
     } else {
       setBodyStyles({ overflow: "auto" });
     }
@@ -33,7 +34,6 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleMenuOpen = () => {
     setMenuOpen(!menuOpen);
-    console.log("menu clicked", bodyStyles);
   };
 
   return (

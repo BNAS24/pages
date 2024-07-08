@@ -25,13 +25,14 @@ export const SideMenu = () => {
 
   return (
     <SideMenuContainer
+    disableGutters={true}
+    maxWidth={false}
       style={spring}
       sx={{
         position: "fixed",
         display: !animationComplete ? "flex" : "none",
         top: "64px",
         right: 0,
-        bottom: 0,
         height: "100%",
         backgroundColor: "grey",
         zIndex: 101,
