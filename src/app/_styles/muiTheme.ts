@@ -20,6 +20,7 @@ export const theme = createTheme({
     fontFamily: `"Roboto", "Open Sans", sans-serif`,
     button: {
       textTransform: "none",
+      fontWeight: 700,
     },
   },
   components: {
