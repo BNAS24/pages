@@ -27,13 +27,13 @@ export const SideMenu = () => {
     <SideMenuContainer
       style={spring}
       sx={{
-        position: "absolute",
+        position: "fixed",
         display: !animationComplete ? "flex" : "none",
         top: "64px",
         right: 0,
         height: "100%",
-        width: "100px",
         backgroundColor: "grey",
+        zIndex: 101,
       }}
     >
       This a side nav
