@@ -1,0 +1,15 @@
+{
+  "name": "Pages",
+  "short_name": "",
+  "theme_color": "#0F52BA",
+  "background_color": "#DFE2F1",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    { "src": "/icons-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icons-256.png", "type": "image/png", "sizes": "256x256" },
+    { "src": "/icons-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
