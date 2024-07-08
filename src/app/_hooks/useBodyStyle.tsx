@@ -1,19 +1,7 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-interface NavigationState {
-  position?: string;
-  inset?: number | string;
-  overflow?: string;
-  overflowY?: string;
-}
-
-type MenuContextType = {
-  bodyStyles: NavigationState;
-  setBodyStyles: (state: NavigationState) => void;
-  menuOpen: boolean;
-  handleMenuOpen: () => void;
-};
+import { NavigationState } from "@/app/_types/interfaces/navigationState";
+import { MenuContextType } from "@/app/_types/types/navigationState";
 
 const MenuContext = createContext<MenuContextType>({} as MenuContextType);
 
