@@ -87,7 +87,7 @@ export const SideMenu = () => {
               fontSize: "2rem",
             }}
           >
-            thrillers
+            Thrillers
           </Typography>
           <Typography
             sx={{
