@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
 
 const HamburgerMenu = () => {
