@@ -13,14 +13,14 @@ export const SideMenu = () => {
 
   // Define spring animation configuration
   const spring = useSpring({
-    width: menuOpen ? "100%" : "0",
+    width: menuOpen ? "100%" : "0%",
     onStart: () => {
       setAnimationComplete(false);
     },
     onRest: (result) => {
-      menuOpen && result.finished
-        ? setAnimationComplete(false)
-        : setAnimationComplete(true);
+      if (result.finished) {
+        setAnimationComplete(!menuOpen);
+      }
     },
   });
 
@@ -31,8 +31,9 @@ export const SideMenu = () => {
       style={spring}
       onClick={handleMenuOpen}
       sx={{
-        position: "fixed",
         display: !animationComplete ? "flex" : "none",
+        justifyContent: "flex-end",
+        position: "fixed",
         top: "64px",
         right: 0,
         height: "100%",
@@ -42,16 +43,18 @@ export const SideMenu = () => {
       }}
     >
       <Container
+            disableGutters={true}
+            maxWidth={false}
         sx={{
-          position: "absolute",
-          right: 0,
+          // Margins needed to be set manually to override the mui containers default properties
+          mr: "unset",
+          ml: "auto",
           width: "80%",
           height: "100%",
           backgroundColor: theme.palette.primary.main,
         }}
       >
-        {" "}
-        This a side nav
+        
       </Container>
     </SideMenuContainer>
   );
