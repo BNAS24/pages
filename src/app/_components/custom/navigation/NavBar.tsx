@@ -5,7 +5,6 @@ import BrandLogo from "./BrandLogo";
 import HamburgerMenu from "./HamburgerMenu";
 
 export const NavBar = () => {
-  
   return (
     <Container
       component="nav"
@@ -18,6 +17,7 @@ export const NavBar = () => {
         width: "100%",
         color: theme.palette.primary.contrastText,
         backgroundColor: theme.palette.primary.main,
+        boxShadow: "0px 1px 4px 0px #00000040",
       }}
     >
       <BrandLogo />

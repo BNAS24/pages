@@ -38,24 +38,22 @@ export const SideMenu = () => {
         right: 0,
         height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.40)",
-        // backdropFilter: "blur(8px) ",
         zIndex: 101,
       }}
     >
       <Container
-            disableGutters={true}
-            maxWidth={false}
+        disableGutters={true}
+        maxWidth={false}
         sx={{
           // Margins needed to be set manually to override the mui containers default properties
           mr: "unset",
           ml: "auto",
           width: "80%",
           height: "100%",
+          borderTop: `1px solid ${theme.palette.secondary.main}`,
           backgroundColor: theme.palette.primary.main,
         }}
-      >
-        
-      </Container>
+      ></Container>
     </SideMenuContainer>
   );
 };
