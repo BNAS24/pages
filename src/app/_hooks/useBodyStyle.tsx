@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface NavigationState {
+  position?: string;
+  inset?: number | string;
   overflow?: string;
 }
 
@@ -23,7 +25,7 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
   // Update bodyStyles whenever menuOpen changes
   useEffect(() => {
     if (menuOpen) {
-      setBodyStyles({ overflow: "hidden" });
+      setBodyStyles({ position: "fixed", inset: 0, overflow: "hidden" });
     } else {
       setBodyStyles({ overflow: "auto" });
     }
