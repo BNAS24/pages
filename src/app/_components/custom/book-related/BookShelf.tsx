@@ -24,9 +24,6 @@ const CollectionTitle = ({ title }: any) => {
 };
 
 const Book = ({ title, bookCover }: any) => {
-  // book variable will actually be a react state variable
-  const book = false;
-  const titleFontSize = "1rem";
 
   return (
     <Container
@@ -70,7 +67,7 @@ const Book = ({ title, bookCover }: any) => {
       <Typography
         align="center"
         sx={{
-          fontSize: titleFontSize,
+          fontSize: "1rem",
           display: "-webkit-box",
           WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical",
@@ -90,7 +87,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
     <Container
       component="section"
       sx={{
-        height: "280px",
+        height: "288px",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         overflow: "hidden  ",
