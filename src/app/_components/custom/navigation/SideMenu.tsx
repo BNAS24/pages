@@ -37,7 +37,7 @@ export const SideMenu = () => {
         right: 0,
         height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.40)",
-        backdropFilter: "blur(8px) ",
+        // backdropFilter: "blur(8px) ",
         zIndex: 101,
       }}
     >
