@@ -44,6 +44,7 @@ export const SideMenu = () => {
       <Container
         disableGutters={true}
         maxWidth={false}
+        onClick={(event) => event.stopPropagation()}
         sx={{
           // Margins needed to be set manually to override the mui containers default properties
           width: "80%",
