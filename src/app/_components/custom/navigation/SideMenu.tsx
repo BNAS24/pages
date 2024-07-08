@@ -58,6 +58,9 @@ export const SideMenu = () => {
           disableGutters={true}
           maxWidth={false}
           sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
             padding: "1rem 1rem",
           }}
         >
