@@ -31,7 +31,8 @@ export const SideMenu = () => {
         display: !animationComplete ? "flex" : "none",
         top: "64px",
         right: 0,
-        height: "100%",
+        bottom: 0,
+        // height: "100%",
         backgroundColor: "grey",
         zIndex: 101,
       }}
