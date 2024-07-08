@@ -32,5 +32,23 @@ export const theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: secondaryMainOrange,
+          color: "#FFFFFF", // Text color
+          '&:hover': {
+            backgroundColor: secondaryMainOrange, // Darker shade for hover state
+          },
+        },
+        outlined: {
+          borderColor: secondaryMainOrange,
+          color: secondaryMainOrange, // Text color
+          '&:hover': {
+            border: "2.5px solid #FFB245", // Light orange background on hover
+          },
+        },
+      },
+    },
   },
 });

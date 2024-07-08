@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
@@ -126,6 +126,44 @@ export const SideMenu = () => {
           >
             More Subjects
           </Typography>
+        </Container>
+
+        {/*Horizontal line */}
+        <Container maxWidth={false}>
+          <hr className="horizontal-line" />
+        </Container>
+
+        {/*Button group */}
+        <Container
+          maxWidth={false}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: "1rem",
+            paddingY: "1rem",
+          }}
+        >
+          <Button
+            disableElevation={true}
+            variant="outlined"
+            sx={{
+              minWidth: "92px",
+              borderRadius: "2rem",
+            }}
+          >
+            Sign Up
+          </Button>
+          <Button
+            disableElevation={true}
+            variant="contained"
+            sx={{
+              minWidth: "92px",
+              borderRadius: "2rem",
+            }}
+          >
+            Join Now
+          </Button>
         </Container>
       </Container>
     </SideMenuContainer>
