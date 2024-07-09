@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { NavigationState } from "@/app/_types/interfaces/navigationState";
-import { MenuContextType } from "@/app/_types/types/navigationState";
+import { MenuContextType } from "@/app/_types/types/menuContextType";
 
 const MenuContext = createContext<MenuContextType>({} as MenuContextType);
 
