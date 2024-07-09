@@ -7,23 +7,23 @@ export const navigationLinks: NavigationInterface[] = [
   },
   {
     title: "Kids",
-    path: "",
+    path: "/categories/kids",
   },
   {
     title: "Thrillers",
-    path: "",
+    path: "/categories/thrillers",
   },
   {
     title: "Romance",
-    path: "",
+    path: "/categories/romance",
   },
   {
     title: "Self-Help",
-    path: "",
+    path: "/categories/self-help",
   },
   {
     title: "Psychology",
-    path: "",
+    path: "/categories/psychology",
   },
   {
     title: "More Subjects!",

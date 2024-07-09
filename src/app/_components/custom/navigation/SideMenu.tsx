@@ -68,7 +68,6 @@ export const SideMenu = () => {
           }}
         >
           {/*List of navigation links*/}
-          {/*Make sure to wrap the typograph with a next link*/}
           {navigationLinks &&
             navigationLinks.map((linkData: any) => (
               <Link

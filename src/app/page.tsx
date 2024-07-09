@@ -3,40 +3,38 @@ import { Container, Typography } from "@mui/material";
 import { theme } from "./_styles/muiTheme";
 import { BookShelf } from "./_components/custom/book-related/BookShelf";
 import { useEffect, useState } from "react";
+import { BookCollection } from "./_types/types/bookCollectionTypes";
 
 export default function Home() {
-  const [bookList, setBookList] = useState([]);
+  const [bookList, setBookList] = useState<BookCollection[]>([]);
 
   useEffect(() => {
-    // Fetches a book list from the google book api
-    const fetchBookCollectionTest = async () => {
+    const fetchCollections = async () => {
       try {
         const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=subject:juvenile%20fiction&maxResults=40`
+          `/api/getBooks/homepage`,
+          {
+            next: { revalidate: 3600 },
+          }
         );
 
         if (!response.ok) {
-          console.error("Error fetching books from Google Books API");
-          return;
+          throw new Error("Failed to fetch data");
         }
 
-        const books = await response.json();
+        const collections = await response.json();
 
-        // Filter out books that don't have required fields
-        const completeBooks = books.items.filter(
-          (book: any) =>
-            book.volumeInfo.imageLinks &&
-            book.volumeInfo.previewLink &&
-            book.volumeInfo.language === "en",
-        );
+        // Ensure collections.response is an object and convert it to an array of [key, value] pairs
+        const bookArray: BookCollection[] = Object.entries(collections.response);
+        console.log("Converted book array:", bookArray);
 
-        setBookList(completeBooks);
+        setBookList(bookArray);
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
-    fetchBookCollectionTest();
+    fetchCollections();
   }, []);
 
   console.log("book list", bookList);
@@ -71,13 +69,17 @@ export default function Home() {
           gap: "1rem",
         }}
       >
-        {/*These bookshelves will be dynamically mapped with books fetched from the server using the google book api */}
-        <BookShelf collectionTitle="Kids" bookList={bookList} />
-        <BookShelf />
-        <BookShelf />
-        <BookShelf />
-        <BookShelf />
-        <BookShelf />
+        {bookList
+          ? bookList.map(([collectionTitle, books], index): any => (
+              <BookShelf
+                key={index}
+                collectionTitle={collectionTitle}
+                bookList={books}
+              />
+            ))
+          : Array.from({ length: 8 }).map((_, index) => (
+              <BookShelf key={index} />
+            ))}
       </Container>
     </Container>
   );

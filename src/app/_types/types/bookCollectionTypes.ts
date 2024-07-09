@@ -1,0 +1,1 @@
+export type BookCollection = [string, unknown[]];
