@@ -36,7 +36,12 @@ export default function Home() {
   }, []);
 
   return (
-    <Container disableGutters={true}>
+    <Container
+      disableGutters={true}
+      sx={{
+        minHeight: "100vh",
+      }}
+    >
       <Container
         sx={{
           paddingY: "1rem",
