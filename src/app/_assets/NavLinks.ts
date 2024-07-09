@@ -2,10 +2,6 @@ import { NavigationInterface } from "../_types/interfaces/navigationInterface";
 
 export const navigationLinks: NavigationInterface[] = [
   {
-    title: "Editor's choice",
-    path: "/categories/fiction",
-  },
-  {
     title: "Kids",
     path: "/categories/kids",
   },
@@ -24,6 +20,10 @@ export const navigationLinks: NavigationInterface[] = [
   {
     title: "Psychology",
     path: "/categories/psychology",
+  },
+  {
+    title: "Health & Fitness",
+    path: "/categories/health-&-fitness",
   },
   {
     title: "More Subjects!",

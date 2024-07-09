@@ -54,10 +54,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       <NavBar />
-      <Suspense fallback={<Loading />}>
-        <SideMenu />
-        {children}
-      </Suspense>
+      <SideMenu />
+      {children}
       <Footer />
     </Container>
   );

@@ -4,6 +4,7 @@ import { theme } from "./_styles/muiTheme";
 import { BookShelf } from "./_components/custom/book-related/BookShelf";
 import { useEffect, useState } from "react";
 import { BookCollection } from "./_types/types/bookCollectionTypes";
+import Loading from "./_components/custom/loading/Progress";
 
 export default function Home() {
   const [bookList, setBookList] = useState<BookCollection[]>([]);
@@ -34,6 +35,19 @@ export default function Home() {
 
     fetchCollections();
   }, []);
+
+  if (bookList.length === 0) {
+    return (
+      <Container
+        disableGutters={true}
+        sx={{
+          minHeight: "100vh",
+        }}
+      >
+        <Loading />
+      </Container>
+    );
+  }
 
   return (
     <Container
