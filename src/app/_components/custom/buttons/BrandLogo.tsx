@@ -5,12 +5,12 @@ const BrandLogo = () => {
   const { menuOpen, handleMenuOpen } = useMenu();
 
   // Checks if the side menu was open through the hook and decides to close it if its open
-  const menuWasOpen = () => {
-    menuOpen ? handleMenuOpen() : null;
-  };
+  // const menuWasOpen = () => {
+  //   menuOpen ? handleMenuOpen() : null;
+  // };
 
   return (
-    <Link href="/" onClick={menuWasOpen}>
+    <Link href="/" onClick={handleMenuOpen}>
       <svg
         width={40}
         height={40}
