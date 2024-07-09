@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps) {
       maxWidth={false}
       sx={{
         width: '100%',
-        minHeight: "100%",
+        minHeight: "100vh",
         // backgroundColor: "#DFE2F1",
       }}
     >
