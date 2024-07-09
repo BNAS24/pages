@@ -1,0 +1,21 @@
+import { Container } from "@mui/material";
+import { theme } from "@/app/_styles/muiTheme";
+
+export const Footer = () => {
+  return (
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
+        height: "64px",
+        mt: "1rem",
+        pb: "1rem",
+        backgroundColor: theme.palette.primary.main,
+      }}
+    >
+      Footer
+    </Container>
+  );
+};

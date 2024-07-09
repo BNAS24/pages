@@ -11,12 +11,9 @@ export default function Home() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const response = await fetch(
-          `/api/getBooks/homepage`,
-          {
-            next: { revalidate: 3600 },
-          }
-        );
+        const response = await fetch(`/api/getBooks/homepage`, {
+          next: { revalidate: 3600 },
+        });
 
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -25,8 +22,9 @@ export default function Home() {
         const collections = await response.json();
 
         // Ensure collections.response is an object and convert it to an array of [key, value] pairs
-        const bookArray: BookCollection[] = Object.entries(collections.response);
-        console.log("Converted book array:", bookArray);
+        const bookArray: BookCollection[] = Object.entries(
+          collections.response
+        );
 
         setBookList(bookArray);
       } catch (error) {
@@ -36,8 +34,6 @@ export default function Home() {
 
     fetchCollections();
   }, []);
-
-  console.log("book list", bookList);
 
   return (
     <Container disableGutters={true}>

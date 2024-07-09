@@ -11,6 +11,7 @@ import { SideMenu } from "./_components/custom/navigation/SideMenu";
 import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
 import { theme } from "./_styles/muiTheme";
 import "./globals.css";
+import { Footer } from "./_components/custom/navigation/Footer";
 
 export default function RootLayout({
   children,
@@ -57,6 +58,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
         <SideMenu />
         {children}
       </Suspense>
+      <Footer />
     </Container>
   );
 };

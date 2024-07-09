@@ -115,7 +115,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
             <Book
               key={book.id}
               title={book.volumeInfo.title}
-              bookCover={book.volumeInfo.imageLinks?.thumbnail}
+              bookCover={book.volumeInfo.imageLinks.thumbnail}
             />
           ))
         ) : (

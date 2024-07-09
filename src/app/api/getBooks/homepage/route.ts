@@ -45,4 +45,4 @@ export async function GET() {
     console.log(error);
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
-}
+};
