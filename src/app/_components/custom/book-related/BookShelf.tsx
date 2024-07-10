@@ -87,7 +87,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
     <Container
       component="section"
       sx={{
-        height: "288px",
+        height: "304px",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         overflow: "hidden  ",

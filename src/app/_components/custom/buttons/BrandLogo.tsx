@@ -10,7 +10,7 @@ const BrandLogo = () => {
   };
 
   return (
-    <Link href="/" onClick={menuWasOpen}>
+    <Link href="/" onClick={menuWasOpen} aria-label="homepage">
       <svg
         width={40}
         height={40}

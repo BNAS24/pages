@@ -3,4 +3,5 @@ export interface NavigationState {
   inset?: number | string;
   overflow?: string;
   overflowY?: string;
+  paddingRight?: number | string;
 }

@@ -50,14 +50,14 @@ export default function Home() {
         }}
       >
         <Loading />
-        <Container 
-        sx={{
-          flex: 1,
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        <Container
+          sx={{
+            flex: 1,
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <Image
             src="/icons/logo-64.png"
@@ -91,6 +91,10 @@ export default function Home() {
           align="center"
           fontWeight={700}
           sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "200px",
             color: theme.palette.primary.main,
           }}
         >

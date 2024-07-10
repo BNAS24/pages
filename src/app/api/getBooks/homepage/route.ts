@@ -13,7 +13,7 @@ export async function GET() {
       "Thrillers",
       "Romance",
       "Self-Help",
-      "Pyschology",
+      "Psychology",
       "Health & Fitness",
     ];
 
