@@ -28,6 +28,7 @@ export const Book = ({ title, bookCover, maxWidth }: any) => {
   return (
     <Container
       disableGutters={true}
+      maxWidth={false}
       sx={{
         display: "flex",
         flexDirection: "column",
