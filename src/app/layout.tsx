@@ -4,8 +4,6 @@ import { Container } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { Suspense } from "react";
-import Loading from "./_components/custom/loading/Loading";
 import { NavBar } from "./_components/custom/navigation/NavBar";
 import { SideMenu } from "./_components/custom/navigation/SideMenu";
 import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
