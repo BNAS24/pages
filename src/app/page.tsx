@@ -41,6 +41,7 @@ export default function Home() {
     return (
       <Container
         disableGutters={true}
+        maxWidth={false}
         sx={{
           display: "flex",
           flexDirection: "column",
