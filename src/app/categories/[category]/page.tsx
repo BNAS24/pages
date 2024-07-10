@@ -107,6 +107,7 @@ export default function CategoryPage() {
               title={book.volumeInfo.title}
               bookCover={book.volumeInfo.imageLinks?.thumbnail}
               maxWidth="88px"
+              fontSize="0.8rem"
             />
           ))
         ) : (

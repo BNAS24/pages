@@ -23,7 +23,7 @@ const CollectionTitle = ({ title }: any) => {
   );
 };
 
-export const Book = ({ title, bookCover, maxWidth }: any) => {
+export const Book = ({ title, bookCover, maxWidth, fontSize }: any) => {
 
   return (
     <Container
@@ -70,7 +70,7 @@ export const Book = ({ title, bookCover, maxWidth }: any) => {
         align="center"
         sx={{
           color: "white",
-          fontSize: "1rem",
+          fontSize: fontSize ? fontSize : "1rem",
           display: "-webkit-box",
           WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical",
