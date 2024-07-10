@@ -74,9 +74,7 @@ export const SideMenu = () => {
                 key={linkData.title}
                 onClick={handleMenuOpen}
                 href={linkData.path}
-                style={{
-                  all: "unset",
-                }}
+                className="side-menu-link"
               >
                 <Typography
                   noWrap

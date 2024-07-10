@@ -24,16 +24,14 @@
   border: 1px solid #FFA600;
 }
 
-/* ::-webkit-scrollbar {
-  margin: 1em auto;
-  width: 1rem;
-  height: "auto";
-  background-color: #DFE2F1;
+.side-menu-link {
+  all: unset;
 }
 
-::-webkit-scrollbar-thumb {
-  background: grey;
-  border-radius: 16px;
-  width: 0.5rem;
-  height: 1rem;
-} */
+.side-menu-link:hover {
+  cursor: pointer;
+}
+
+.hamburger-menu:hover{
+  cursor: pointer;
+}

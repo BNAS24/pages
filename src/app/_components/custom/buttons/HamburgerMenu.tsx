@@ -1,20 +1,12 @@
 import { useMenu } from "@/app/_hooks/useBodyStyle";
-import { useState } from "react";
 
 const HamburgerMenu = () => {
   const { handleMenuOpen } = useMenu();
-  const [isHovered, setHovered] = useState<boolean>(false);
-
-  const handleMouseHover = () => setHovered(!isHovered);
 
   return (
     <svg
       onClick={handleMenuOpen}
-      onMouseEnter={handleMouseHover}
-      onMouseLeave={handleMouseHover}
-      style={{
-        cursor: isHovered ? "pointer" : "default",
-      }}
+      className="hamburger-menu"
       width={40}
       height={40}
       viewBox="0 0 40 40"

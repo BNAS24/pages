@@ -23,7 +23,7 @@ const CollectionTitle = ({ title }: any) => {
   );
 };
 
-const Book = ({ title, bookCover }: any) => {
+export const Book = ({ title, bookCover, maxWidth }: any) => {
 
   return (
     <Container
@@ -32,6 +32,7 @@ const Book = ({ title, bookCover }: any) => {
         display: "flex",
         flexDirection: "column",
         gap: "0.5rem",
+        maxWidth: maxWidth ? maxWidth : null,
       }}
     >
       <Container
@@ -67,6 +68,7 @@ const Book = ({ title, bookCover }: any) => {
       <Typography
         align="center"
         sx={{
+          color: "white",
           fontSize: "1rem",
           display: "-webkit-box",
           WebkitLineClamp: 3,

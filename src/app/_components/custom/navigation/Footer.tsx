@@ -4,6 +4,7 @@ import { theme } from "@/app/_styles/muiTheme";
 export const Footer = () => {
   return (
     <Container
+    maxWidth={false}
       sx={{
         display: "flex",
         flexDirection: "row",

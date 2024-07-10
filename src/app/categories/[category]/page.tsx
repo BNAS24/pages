@@ -3,6 +3,10 @@ import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Loading from "@/app/_components/custom/loading/Progress";
+import ActiveLastBreadcrumb from "@/app/_components/custom/navigation/Breadcrumbs";
+import { theme } from "@/app/_styles/muiTheme";
+import { Book } from "@/app/_components/custom/book-related/BookShelf";
 
 export default function CategoryPage() {
   const [books, setBooks] = useState([]);
@@ -37,46 +41,73 @@ export default function CategoryPage() {
     fetchCategoryOfBooks();
   }, [category]);
 
-  console.log("books", books);
+  if (books.length === 0) {
+    return (
+      <Container
+        disableGutters={true}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <Loading />
+        <Container
+          sx={{
+            flex: 1,
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            src="/icons/logo-64.png"
+            alt="splash screen logo"
+            height={64}
+            width={64}
+            style={{
+              marginBottom: "2rem",
+            }}
+          />
+        </Container>
+      </Container>
+    );
+  }
 
   return (
     <Container
-    // disableGutters={true}
+      disableGutters={true}
       sx={{
         display: "flex",
-        flexWrap: "wrap",
-        alignItems: "center",
+        flexDirection: "column",
         width: "100%",
-        overflowX: "hidden",
       }}
     >
+      <ActiveLastBreadcrumb />
       <Container
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          alignItems: "center",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          gap: "1rem",
           width: "100%",
+          paddingY: "1.5rem",
+          overflowX: "hidden",
+          backgroundColor: theme.palette.primary.main,
         }}
       >
         {books ? (
           books.map((book: any) => (
-            <Container
-            disableGutters={true}
+            <Book
               key={book.id}
-              sx={{
-                flexShrink: 0,
-                display: "flex",
-                width: "88px",
-                aspectRatio: "2 / 3",
-              }}
-            >
-              <Image
-                src={book.volumeInfo?.imageLinks?.thumbnail}
-                alt={book.volumeInfo.title}
-                width={200}
-                height={300}
-              />
-            </Container>
+              title={book.volumeInfo.title}
+              bookCover={book.volumeInfo.imageLinks?.thumbnail}
+              maxWidth="88px"
+            />
           ))
         ) : (
           <Typography variant="h1">No books available</Typography>
