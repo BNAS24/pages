@@ -13,9 +13,9 @@ export async function GET(req: NextRequest) {
     "Kids",
     "Thrillers",
     "Romance",
-    "Self-Help",
+    "Self-help",
     "Psychology",
-    "Health & Fitness",
+    "Health-&-fitness",
   ];
 
   const checkIfACategoryMatches = ({ categories, request }: Categories) => {

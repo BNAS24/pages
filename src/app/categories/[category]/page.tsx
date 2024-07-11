@@ -19,8 +19,9 @@ export default function CategoryPage() {
   useEffect(() => {
     const fetchCategoryOfBooks = async () => {
       try {
+        const encodedCategory = encodeURIComponent(category);
         const response = await fetch(
-          `/api/getBooks/featured-categories?bookCategory=${category}`,
+          `/api/getBooks/featured-categories?bookCategory=${encodedCategory}`,
           {
             next: { revalidate: 3600 },
           }
