@@ -1,6 +1,7 @@
 import { Container, Skeleton, Typography } from "@mui/material";
 import { theme } from "../../../_styles/muiTheme";
 import Image from "next/image";
+import Link from "next/link";
 
 const CollectionTitle = ({ title }: any) => {
   const fontSize = "1.5rem";
@@ -23,9 +24,10 @@ const CollectionTitle = ({ title }: any) => {
   );
 };
 
-export const Book = ({ title, bookCover, maxWidth, fontSize }: any) => {
+export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
 
   return (
+    <Link href={link}>
     <Container
       disableGutters={true}
       maxWidth={false}
@@ -81,6 +83,7 @@ export const Book = ({ title, bookCover, maxWidth, fontSize }: any) => {
         {title ? title : "Title of Book Title of Book Title of Book"}
       </Typography>
     </Container>
+    </Link>
   );
 };
 
@@ -119,6 +122,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
               key={book.id}
               title={book.volumeInfo.title}
               bookCover={book.volumeInfo.imageLinks.thumbnail}
+              link={book.volumeInfo.previewLink}
             />
           ))
         ) : (
