@@ -2,6 +2,7 @@ import { Container, Skeleton, Typography } from "@mui/material";
 import { theme } from "../../../_styles/muiTheme";
 import Image from "next/image";
 import Link from "next/link";
+import useEmblaCarousel from "embla-carousel-react";
 
 const CollectionTitle = ({ title }: any) => {
   const fontSize = "1.5rem";
@@ -9,8 +10,12 @@ const CollectionTitle = ({ title }: any) => {
   return (
     <Container
       maxWidth={false}
-      disableGutters={true}
-      sx={{ display: "flex", paddingY: "1rem" }}
+      // disableGutters={true}
+      sx={{
+        display: "flex",
+        paddingY: "1rem",
+        backgroundColor: theme.palette.primary.main,
+      }}
     >
       <Typography
         sx={{
@@ -25,7 +30,6 @@ const CollectionTitle = ({ title }: any) => {
 };
 
 export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
-  
   return (
     <Link href={`/categories/genre/details?book=${link}`}>
       <Container
@@ -33,6 +37,8 @@ export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
         maxWidth={false}
         sx={{
           display: "flex",
+          flex: "0 0",
+          minWidth: "88px",
           flexDirection: "column",
           gap: "0.5rem",
           maxWidth: maxWidth ? maxWidth : null,
@@ -88,43 +94,53 @@ export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
 };
 
 export const BookShelf = ({ collectionTitle, bookList }: any) => {
+  const [emblaRef] = useEmblaCarousel({
+    align: "start",
+    dragFree: true,
+  });
+
   return (
-    <Container
-      component="section"
-      sx={{
-        height: "304px",
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        overflow: "hidden",
-      }}
-    >
-      <CollectionTitle title={collectionTitle} />
+    <Container disableGutters={true}>
+      <CollectionTitle title={collectionTitle} />{" "}
       <Container
-        disableGutters={true}
-        maxWidth={false}
+        ref={emblaRef}
+        component="section"
         sx={{
-          display: "flex",
-          alignItems: "start",
-          justifyContent: "space-between",
-          gap: "16px",
-          width: "100%",
-          overflowX: "auto",
-          scrollbarWidth: "none", // For Firefox
-          "&::-webkit-scrollbar": {
-            display: "none", // For Chrome, Safari, and Opera
-          },
+          height: "100%",
+          paddingBottom: "1rem",
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+          overflow: "hidden",
         }}
       >
-        {bookList
-          ? bookList.map((book: any) => (
-              <Book
-                key={book.id}
-                title={book.volumeInfo.title}
-                bookCover={book.volumeInfo.imageLinks.thumbnail}
-                link={book.id}
-              />
-            ))
-          : Array.from({ length: 8 }).map((_, index) => <Book key={index} />)}
+        <Container
+          disableGutters={true}
+          maxWidth={false}
+          sx={{
+            display: "flex",
+            alignItems: "start",
+            justifyContent: "space-between",
+            gap: "16px",
+            width: "100%",
+            // overflowX: "auto",
+            // overflow: "hidden",
+            scrollbarWidth: "none", // For Firefox
+            "&::-webkit-scrollbar": {
+              display: "none", // For Chrome, Safari, and Opera
+            },
+          }}
+        >
+          {bookList
+            ? bookList.map((book: any) => (
+                <Book
+                  key={book.id}
+                  title={book.volumeInfo.title}
+                  bookCover={book.volumeInfo.imageLinks.thumbnail}
+                  link={book.id}
+                />
+              ))
+            : Array.from({ length: 8 }).map((_, index) => <Book key={index} />)}
+        </Container>
       </Container>
     </Container>
   );

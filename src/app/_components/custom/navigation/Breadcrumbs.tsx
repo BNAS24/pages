@@ -32,6 +32,7 @@ export default function ActiveLastBreadcrumb({ title }: any) {
 
   return (
     <Container
+      maxWidth={false}
       sx={{
         display: "flex",
         alignItems: "center",
@@ -39,7 +40,7 @@ export default function ActiveLastBreadcrumb({ title }: any) {
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/">Pages</Link>
+        <Link href="/">Home</Link>
         <Link href={`${genreBasePath}`}>{genre}</Link>
         <Typography>{book}</Typography>
       </Breadcrumbs>

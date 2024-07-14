@@ -4,4 +4,4 @@ export const BookRatingElement = () => {
   return (
     <div>BookRatingElement</div>
   )
-}
+};

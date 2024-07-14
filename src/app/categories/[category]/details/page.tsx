@@ -36,16 +36,18 @@ export default function BookDetails() {
   return (
     <Container
       disableGutters={true}
+      maxWidth={false}
       sx={{
         minHeight: "100vh",
       }}
     >
       {bookDetails.volumeInfo && (
-        <Container disableGutters={true}>
+        <Container disableGutters={true} maxWidth={false}>
           <Breadcrumbs title={bookDetails.volumeInfo.title} />
 
           {/*Title Banner*/}
           <Container
+            maxWidth={false}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -78,80 +80,122 @@ export default function BookDetails() {
             component="section"
             sx={{
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              flexDirection: {
+                xs: "column", // 0px
+                sm: "column", // 600px
+                md: "row", // 900px
+                lg: "row", // 1200px
+                xl: "row", // 1536px
+              },
+              alignItems: {
+                xs: "center", // 0px
+                sm: "center", // 600px
+                md: "flex-start", // 900px
+                lg: "flex-start", // 1200px
+                xl: "flex-start", // 1536px
+              },
               mt: "1rem",
             }}
           >
-            {/*Image container*/}
-            <Container
-              disableGutters={true}
-              sx={{
-                position: "relative",
-                display: "flex",
-                width: "148px",
-                alignItems: "center",
-                justifyContent: "center",
-                aspectRatio: "2 / 3",
-              }}
-            >
-              <Image
-                src={bookDetails.volumeInfo.imageLinks.thumbnail}
-                alt={bookDetails.volumeInfo.title}
-                fill
-                style={{ height: "100%", width: "100%" }}
-              />
-            </Container>
-
-            {/*CTA Buttons Container*/}
             <Container
               sx={{
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",
-                gap: "1rem",
-                mt: "1rem",
+                width: {
+                  xs: "100%", // 0px
+                  sm: "100%", // 600px
+                  md: "50%", // 900px
+                  lg: "50%", // 1200px
+                  xl: "50%", // 1536px
+                },
               }}
             >
-              <Button
-                disableElevation={true}
-                variant="contained"
-                href={bookDetails.volumeInfo.previewLink}
+              {/*Image container*/}
+              <Container
+                disableGutters={true}
                 sx={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  minWidth: "92px",
-                  borderRadius: "2rem",
+                  position: "relative",
+                  display: "flex",
+                  width: {
+                    xs: "148px", // 0px
+                    sm: "148px", // 600px
+                    md: "100%", // 900px
+                    lg: "100%", // 1200px
+                    xl: "100%", // 1536px
+                  },
+                  alignItems: "center",
+                  justifyContent: "center",
+                  aspectRatio: "2 / 3",
                 }}
               >
-                Preview
-              </Button>
-              <Button
-                disableElevation={true}
-                variant="contained"
-                href={bookDetails.volumeInfo.previewLink}
-                sx={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  minWidth: "92px",
-                  borderRadius: "2rem",
-                }}
-              >
-                Buy
-              </Button>
-            </Container>
+                <Image
+                  src={bookDetails.volumeInfo.imageLinks.thumbnail}
+                  alt={bookDetails.volumeInfo.title}
+                  fill
+                  style={{ height: "100%", width: "100%" }}
+                />
+              </Container>
 
-            {/*Ratings Container*/}
-            <Container>{}</Container>
+              {/*CTA Buttons Container*/}
+              <Container
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  mt: "1rem",
+                }}
+              >
+                <Button
+                  disableElevation={true}
+                  variant="contained"
+                  href={bookDetails.volumeInfo.previewLink}
+                  sx={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    minWidth: "92px",
+                    borderRadius: "2rem",
+                  }}
+                >
+                  Preview
+                </Button>
+                <Button
+                  disableElevation={true}
+                  variant="contained"
+                  href={bookDetails.volumeInfo.previewLink}
+                  sx={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    minWidth: "92px",
+                    borderRadius: "2rem",
+                  }}
+                >
+                  Buy
+                </Button>
+              </Container>
+
+              {/*Ratings Container*/}
+              <Container disableGutters={true}><b>Ratings:</b>{}</Container>
+            </Container>
 
             {/*Book description */}
-            <Typography
+            <Container
               sx={{
-                mt: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: {
+                  xs: "100%", // 0px
+                  sm: "100%", // 600px
+                  md: "50%", // 900px
+                  lg: "50%", // 1200px
+                  xl: "50%", // 1536px
+                },
               }}
             >
-              {bookDetails.volumeInfo.description}
-            </Typography>
+              <Typography>{bookDetails.volumeInfo.description}</Typography>
+            </Container>
           </Container>
         </Container>
       )}

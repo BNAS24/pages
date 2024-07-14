@@ -1,9 +1,24 @@
 import { useMenu } from "@/app/_hooks/useBodyStyle";
+import { Box } from "@mui/material";
 
 const HamburgerMenu = () => {
   const { handleMenuOpen } = useMenu();
 
-  return (
+  return (    
+    <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      visibility: {
+        xs: "visible", // 0px
+        sm: "visible", // 600px
+        md: "hidden", // 900px
+        lg: "hidden", // 1200px
+        xl: "hidden", // 1536px
+      }
+    }}
+    >
     <svg
       onClick={handleMenuOpen}
       className="hamburger-menu"
@@ -32,6 +47,7 @@ const HamburgerMenu = () => {
         strokeLinecap="round"
       />
     </svg>
+    </Box>
   );
 };
 

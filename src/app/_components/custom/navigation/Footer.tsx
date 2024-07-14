@@ -9,6 +9,7 @@ export const Footer = () => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "space-between",
         width: "100%",
         height: "80px",
         mt: "1rem",
@@ -23,7 +24,15 @@ export const Footer = () => {
           color: theme.palette.primary.contrastText,
         }}
       >
-        Powered by google books
+        Powered by Google Books
+      </Typography>
+      <Typography
+        sx={{
+          fontSize: "1rem",
+          color: theme.palette.primary.contrastText,
+        }}
+      >
+        Website created by Brandon Bradley
       </Typography>
     </Container>
   );
