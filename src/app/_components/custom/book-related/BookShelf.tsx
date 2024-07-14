@@ -2,7 +2,6 @@ import { Container, Skeleton, Typography } from "@mui/material";
 import { theme } from "../../../_styles/muiTheme";
 import Image from "next/image";
 import Link from "next/link";
-// import { usePathname } from "next/navigation";
 
 const CollectionTitle = ({ title }: any) => {
   const fontSize = "1.5rem";

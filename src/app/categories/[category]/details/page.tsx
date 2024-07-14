@@ -141,6 +141,9 @@ export default function BookDetails() {
               </Button>
             </Container>
 
+            {/*Ratings Container*/}
+            <Container>{}</Container>
+
             {/*Book description */}
             <Typography
               sx={{
