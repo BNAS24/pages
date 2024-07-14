@@ -73,9 +73,8 @@ export default function Home() {
       </Container>
     );
   }
-
-  console.log("booksList: ", bookList);
-
+  
+  console.log(bookList);
   return (
     <Container
       disableGutters={true}

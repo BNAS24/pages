@@ -1,18 +1,34 @@
-import * as React from "react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
+import Link from "next/link";
 import { Container } from "@mui/material";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
+export default function ActiveLastBreadcrumb({ title }: any) {
+  const [genre, setGenre] = useState<string>("");
+  const [book, setBook] = useState<string>("");
 
-export default function ActiveLastBreadcrumb() {
+  const genreFromPathname = usePathname();
+  const genreExtracted =
+    genreFromPathname.split("/")[2].charAt(0).toUpperCase() +
+    genreFromPathname.split("/")[2].slice(1);
+
+  useEffect(() => {
+    const setPathnames = () => {
+      setGenre(genreExtracted);
+      setBook(title);
+    };
+
+    setPathnames();
+  }, [genreExtracted, title]);
+
+  console.log({
+    genreExtracted: genreExtracted,
+    bookExtracted: book,
+  });
+
   return (
     <Container
-      role="presentation"
-      onClick={handleClick}
       sx={{
         display: "flex",
         alignItems: "center",
@@ -20,23 +36,14 @@ export default function ActiveLastBreadcrumb() {
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          Genres
+        <Link color="inherit" href="/">
+          Pages
         </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          Thrillers
+        <Link href={`categories/${genreFromPathname}`}>
+          {genre}
         </Link>
-        <Link
-          underline="hover"
-          color="text.primary"
-          href="/material-ui/react-breadcrumbs/"
-          aria-current="page"
-        >
-          Breadcrumbs
+        <Link color="text.primary" href={`/`} aria-current="page">
+          {book}
         </Link>
       </Breadcrumbs>
     </Container>

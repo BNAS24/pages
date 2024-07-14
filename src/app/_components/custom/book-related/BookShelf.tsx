@@ -2,6 +2,7 @@ import { Container, Skeleton, Typography } from "@mui/material";
 import { theme } from "../../../_styles/muiTheme";
 import Image from "next/image";
 import Link from "next/link";
+// import { usePathname } from "next/navigation";
 
 const CollectionTitle = ({ title }: any) => {
   const fontSize = "1.5rem";
@@ -25,70 +26,69 @@ const CollectionTitle = ({ title }: any) => {
 };
 
 export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
-
+  
   return (
-    <Link href={link}>
-    <Container
-      disableGutters={true}
-      maxWidth={false}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.5rem",
-        maxWidth: maxWidth ? maxWidth : null,
-      }}
-    >
+    <Link href={`/categories/genre/details/${link}`}>
       <Container
         disableGutters={true}
+        maxWidth={false}
         sx={{
-          position: "relative",
           display: "flex",
-          flexShrink: 0,
-          width: "88px",
-          aspectRatio: "2 / 3",
-          backgroundColor: "white",
+          flexDirection: "column",
+          gap: "0.5rem",
+          maxWidth: maxWidth ? maxWidth : null,
         }}
       >
-        {/*This will actually be rendered while the books are being fetched from the api*/}
-        {bookCover ? (
-          <Image
-            src={bookCover}
-            alt={title}
-            fill
-            style={{ height: "100%", width: "100%" }}
-          />
-        ) : (
-          <Skeleton
-            variant="rectangular"
-            sx={{
-              width: "100%",
-              height: "100%",
-              backgroundColor: "grey",
-            }}
-          />
-        )}
+        <Container
+          disableGutters={true}
+          sx={{
+            position: "relative",
+            display: "flex",
+            flexShrink: 0,
+            width: "88px",
+            aspectRatio: "2 / 3",
+            backgroundColor: "white",
+          }}
+        >
+          {/*This will actually be rendered while the books are being fetched from the api*/}
+          {bookCover ? (
+            <Image
+              src={bookCover}
+              alt={title}
+              fill
+              style={{ height: "100%", width: "100%" }}
+            />
+          ) : (
+            <Skeleton
+              variant="rectangular"
+              sx={{
+                width: "100%",
+                height: "100%",
+                backgroundColor: "grey",
+              }}
+            />
+          )}
+        </Container>
+        <Typography
+          align="center"
+          sx={{
+            color: "white",
+            fontSize: fontSize ? fontSize : "1rem",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {title ? title : "Title of Book Title of Book Title of Book"}
+        </Typography>
       </Container>
-      <Typography
-        align="center"
-        sx={{
-          color: "white",
-          fontSize: fontSize ? fontSize : "1rem",
-          display: "-webkit-box",
-          WebkitLineClamp: 3,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        {title ? title : "Title of Book Title of Book Title of Book"}
-      </Typography>
-    </Container>
     </Link>
   );
 };
 
 export const BookShelf = ({ collectionTitle, bookList }: any) => {
-
   return (
     <Container
       component="section"
@@ -96,7 +96,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
         height: "304px",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
-        overflow: "hidden  ",
+        overflow: "hidden",
       }}
     >
       <CollectionTitle title={collectionTitle} />
@@ -116,20 +116,16 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
           },
         }}
       >
-        {bookList ? (
-          bookList.map((book: any) => (
-            <Book
-              key={book.id}
-              title={book.volumeInfo.title}
-              bookCover={book.volumeInfo.imageLinks.thumbnail}
-              link={book.volumeInfo.previewLink}
-            />
-          ))
-        ) : (
-          Array.from({ length: 8 }).map((_, index) => (
-            <Book key={index} />
-          ))
-        )}
+        {bookList
+          ? bookList.map((book: any) => (
+              <Book
+                key={book.id}
+                title={book.volumeInfo.title}
+                bookCover={book.volumeInfo.imageLinks.thumbnail}
+                link={book.id}
+              />
+            ))
+          : Array.from({ length: 8 }).map((_, index) => <Book key={index} />)}
       </Container>
     </Container>
   );
