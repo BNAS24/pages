@@ -37,6 +37,7 @@ export default function ActiveLastBreadcrumb({ title }: any) {
         display: "flex",
         alignItems: "center",
         minHeight: "48px",
+        paddingY: "0.5rem",
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">

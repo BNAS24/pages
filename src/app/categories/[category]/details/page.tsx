@@ -54,6 +54,7 @@ export default function BookDetails() {
               justifyContent: "center",
               width: "100%",
               minHeight: "88px",
+              paddingY: "0.5rem",
               backgroundColor: theme.palette.primary.main,
             }}
           >
