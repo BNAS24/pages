@@ -53,7 +53,7 @@ export default function BookDetails() {
               flexDirection: "column",
               justifyContent: "center",
               width: "100%",
-              height: "88px",
+              minHeight: "88px",
               backgroundColor: theme.palette.primary.main,
             }}
           >

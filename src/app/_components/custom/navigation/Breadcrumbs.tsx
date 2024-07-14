@@ -36,7 +36,7 @@ export default function ActiveLastBreadcrumb({ title }: any) {
       sx={{
         display: "flex",
         alignItems: "center",
-        height: "48px",
+        minHeight: "48px",
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
