@@ -6,7 +6,7 @@ import Breadcrumbs from "@/app/_components/custom/navigation/Breadcrumbs";
 import Image from "next/image";
 
 export default function BookDetails() {
-  const [bookDetails, setDetails] = useState({});
+  const [bookDetails, setDetails] = useState<any>({});
   const pathname = usePathname();
   const bookId = pathname.split("/")[4];
 
@@ -41,7 +41,7 @@ export default function BookDetails() {
       <Breadcrumbs title={bookDetails.volumeInfo?.title} />
       <Container>
         <Image
-          src={bookDetails.volumeInfo?.imageLinks.thumbnail}
+          src={bookDetails?.volumeInfo?.imageLinks.thumbnail}
           alt={bookDetails.volumeInfo?.title}
           height={100}
           width={100}
