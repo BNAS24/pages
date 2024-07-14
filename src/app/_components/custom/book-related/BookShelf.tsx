@@ -28,7 +28,7 @@ const CollectionTitle = ({ title }: any) => {
 export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
   
   return (
-    <Link href={`/categories/genre/details/${link}`}>
+    <Link href={`/categories/genre/details?book=${link}`}>
       <Container
         disableGutters={true}
         maxWidth={false}

@@ -1,6 +1,6 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "next/link";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -8,23 +8,26 @@ export default function ActiveLastBreadcrumb({ title }: any) {
   const [genre, setGenre] = useState<string>("");
   const [book, setBook] = useState<string>("");
 
-  const genreFromPathname = usePathname();
-  const genreExtracted =
-    genreFromPathname.split("/")[2].charAt(0).toUpperCase() +
-    genreFromPathname.split("/")[2].slice(1);
+  const getPathnameGenre = usePathname();
+  const extractedGenre =
+    getPathnameGenre.split("/")[2].charAt(0).toUpperCase() +
+    getPathnameGenre.split("/")[2].slice(1);
+
+  const pathname = usePathname();
+  const genreBasePath = pathname.split("/").slice(0, 3).join("/");
 
   useEffect(() => {
     const setPathnames = () => {
-      setGenre(genreExtracted);
+      setGenre(extractedGenre);
       setBook(title);
     };
 
     setPathnames();
-  }, [genreExtracted, title]);
+  }, [extractedGenre, title]);
 
   console.log({
-    genreExtracted: genreExtracted,
     bookExtracted: book,
+    basePath: genreBasePath,
   });
 
   return (
@@ -36,15 +39,9 @@ export default function ActiveLastBreadcrumb({ title }: any) {
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/">
-          Pages
-        </Link>
-        <Link href={`categories/${genreFromPathname}`}>
-          {genre}
-        </Link>
-        <Link color="text.primary" href={`/`} aria-current="page">
-          {book}
-        </Link>
+        <Link href="/">Pages</Link>
+        <Link href={`${genreBasePath}`}>{genre}</Link>
+        <Typography>{book}</Typography>
       </Breadcrumbs>
     </Container>
   );
