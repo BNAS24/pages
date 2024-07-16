@@ -103,6 +103,7 @@ export default function BookDetails() {
                 lg: "flex-start", // 1200px
                 xl: "flex-start", // 1536px
               },
+              gap: "1rem",
               mt: "1rem",
             }}
           >
@@ -126,12 +127,14 @@ export default function BookDetails() {
                 sx={{
                   position: "relative",
                   display: "flex",
+                  minWidth: "200px",
                   width: {
-                    xs: "148px", // 0px
-                    sm: "148px", // 600px
-                    md: "100%", // 900px
-                    lg: "100%", // 1200px
-                    xl: "100%", // 1536px
+                    xs: "45%", // 0px
+                    // sm: "148px", // 600px
+                    sm: "45%", // 600px
+                    md: "70%", // 900px
+                    lg: "70%", // 1200px
+                    xl: "70%", // 1536px
                   },
                   alignItems: "center",
                   justifyContent: "center",
@@ -182,12 +185,6 @@ export default function BookDetails() {
                 >
                   Buy
                 </Button>
-              </Container>
-
-              {/*Ratings Container*/}
-              <Container disableGutters={true}>
-                <b>Ratings:</b>
-                {}
               </Container>
             </Container>
 

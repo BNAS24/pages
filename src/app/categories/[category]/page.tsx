@@ -79,11 +79,6 @@ export default function CategoryPage() {
     );
   }
 
-  console.log({
-    books: books,
-    category: category,
-  });
-
   return (
     <Container
       disableGutters={true}
