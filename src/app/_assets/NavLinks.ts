@@ -23,7 +23,7 @@ export const navigationLinks: NavigationInterface[] = [
   },
   {
     title: "Health & Fitness",
-    path: "/categories/health-&-fitness",
+    path: "/categories/health & fitness",
   },
   {
     title: "More Subjects!",

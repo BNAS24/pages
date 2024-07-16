@@ -38,9 +38,9 @@ export default function ActiveLastBreadcrumb({ title, category }: any) {
 
         {/*Genre link and typography component - conditionally rendered.*/}
         {book ? (
-          <Link href={`/categories/${category}`}>{category}</Link>
+          <Link href={`/categories/${(category)}`}>{decodeURI(category)}</Link>
         ) : (
-          <Typography>{category}</Typography>
+          <Typography>{decodeURI(category)}</Typography>
         )}
 
         {/*Book title*/}

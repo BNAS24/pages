@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   // Destructure category name from the path name of the request
-  const bookCategory = req.nextUrl.searchParams.get('bookCategory');
+  const bookCategory = decodeURI(req.nextUrl.searchParams.get('bookCategory')!);
   console.log("bookCategory:", bookCategory);
 
   const categories = [
@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     "Romance",
     "Self-help",
     "Psychology",
-    "Health-&-fitness",
+    "Health & fitness",
   ];
 
   const checkIfACategoryMatches = ({ categories, request }: Categories) => {

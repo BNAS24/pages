@@ -14,7 +14,7 @@ export async function GET() {
       "Romance",
       "Self-Help",
       "Psychology",
-      "Health-&-fitness",
+      "Health & fitness",
     ];
 
     const urls = [

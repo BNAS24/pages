@@ -41,6 +41,9 @@ export const Book = ({
       href={`/categories/genre/details?book=${link}&category=${encodeURIComponent(
         category
       )}`}
+      style={{
+        textDecoration: "none",
+      }}
     >
       <Container
         disableGutters={true}

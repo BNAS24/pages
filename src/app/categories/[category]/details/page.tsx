@@ -205,7 +205,11 @@ export default function BookDetails() {
                 },
               }}
             >
-              <Typography>
+              <Typography
+              sx={{
+                fontSize: "1.1rem",
+              }}
+              >
                 {stripHTML(bookDetails.volumeInfo.description)}
               </Typography>
             </Container>
