@@ -22,6 +22,7 @@ export default function ActiveLastBreadcrumb({ title, category }: any) {
     setPathnames();
   }, [extractedGenre, title]);
 
+  console.log("breadcrumbs category: " + category);
 
   return (
     <Container

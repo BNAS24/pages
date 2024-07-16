@@ -28,9 +28,20 @@ const CollectionTitle = ({ title }: any) => {
   );
 };
 
-export const Book = ({ title, bookCover, link, maxWidth, fontSize, category }: any) => {
+export const Book = ({
+  title,
+  bookCover,
+  link,
+  maxWidth,
+  fontSize,
+  category,
+}: any) => {
   return (
-    <Link href={`/categories/genre/details?book=${link}&category=${category}`}>
+    <Link
+      href={`/categories/genre/details?book=${link}&category=${encodeURIComponent(
+        category
+      )}`}
+    >
       <Container
         disableGutters={true}
         maxWidth={false}

@@ -74,7 +74,6 @@ export default function Home() {
     );
   }
   
-  console.log(bookList);
   return (
     <Container
       disableGutters={true}
