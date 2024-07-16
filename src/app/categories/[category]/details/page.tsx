@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Breadcrumbs from "@/app/_components/custom/navigation/Breadcrumbs";
 import Image from "next/image";
 import { theme } from "@/app/_styles/muiTheme";
+import { stripHTML } from "@/app/utils/removeHTMLFromContent";
 
 export default function BookDetails() {
   const [bookDetails, setDetails] = useState<any>({});
@@ -33,8 +34,7 @@ export default function BookDetails() {
     getBookDetails();
   }, [bookId]);
 
-  console.log("book details", bookDetails);
-
+  console.log("Book Details:", bookDetails);
   return (
     <Container
       disableGutters={true}
@@ -145,7 +145,9 @@ export default function BookDetails() {
                   src={bookDetails.volumeInfo.imageLinks.thumbnail}
                   alt={bookDetails.volumeInfo.title}
                   fill
+                  sizes="100vw"
                   style={{ height: "100%", width: "100%" }}
+                  quality={100}
                 />
               </Container>
 
@@ -203,7 +205,9 @@ export default function BookDetails() {
                 },
               }}
             >
-              <Typography>{bookDetails.volumeInfo.description}</Typography>
+              <Typography>
+                {stripHTML(bookDetails.volumeInfo.description)}
+              </Typography>
             </Container>
           </Container>
         </Container>
