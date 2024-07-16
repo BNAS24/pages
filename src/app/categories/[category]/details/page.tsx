@@ -34,7 +34,6 @@ export default function BookDetails() {
   }, [bookId]);
 
   console.log("book details", bookDetails);
-  console.log("book category", category);
 
   return (
     <Container
@@ -78,7 +77,10 @@ export default function BookDetails() {
                 color: theme.palette.secondary.main,
               }}
             >
-              By: {bookDetails.volumeInfo.authors[0]}
+              By:{" "}
+              {bookDetails.volumeInfo.authors.length > 1
+                ? bookDetails.volumeInfo.authors.join(", ")
+                : bookDetails.volumeInfo.authors[0]}
             </Typography>
           </Container>
 
