@@ -10,7 +10,6 @@ const CollectionTitle = ({ title }: any) => {
   return (
     <Container
       maxWidth={false}
-      // disableGutters={true}
       sx={{
         display: "flex",
         paddingY: "1rem",
@@ -29,9 +28,9 @@ const CollectionTitle = ({ title }: any) => {
   );
 };
 
-export const Book = ({ title, bookCover, link, maxWidth, fontSize }: any) => {
+export const Book = ({ title, bookCover, link, maxWidth, fontSize, category }: any) => {
   return (
-    <Link href={`/categories/genre/details?book=${link}`}>
+    <Link href={`/categories/genre/details?book=${link}&category=${category}`}>
       <Container
         disableGutters={true}
         maxWidth={false}
@@ -137,6 +136,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
                   title={book.volumeInfo.title}
                   bookCover={book.volumeInfo.imageLinks.thumbnail}
                   link={book.id}
+                  category={collectionTitle}
                 />
               ))
             : Array.from({ length: 8 }).map((_, index) => <Book key={index} />)}

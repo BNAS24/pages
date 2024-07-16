@@ -11,6 +11,7 @@ export default function BookDetails() {
 
   const searchParams = useSearchParams();
   const bookId = searchParams.get("book");
+  const category = searchParams.get("category");
 
   useEffect(() => {
     // Fetch relevant book details
@@ -33,6 +34,8 @@ export default function BookDetails() {
   }, [bookId]);
 
   console.log("book details", bookDetails);
+  console.log("book category", category);
+
   return (
     <Container
       disableGutters={true}
@@ -43,7 +46,10 @@ export default function BookDetails() {
     >
       {bookDetails.volumeInfo && (
         <Container disableGutters={true} maxWidth={false}>
-          <Breadcrumbs title={bookDetails.volumeInfo.title} />
+          <Breadcrumbs
+            title={bookDetails.volumeInfo.title}
+            category={category}
+          />
 
           {/*Title Banner*/}
           <Container
@@ -177,7 +183,10 @@ export default function BookDetails() {
               </Container>
 
               {/*Ratings Container*/}
-              <Container disableGutters={true}><b>Ratings:</b>{}</Container>
+              <Container disableGutters={true}>
+                <b>Ratings:</b>
+                {}
+              </Container>
             </Container>
 
             {/*Book description */}

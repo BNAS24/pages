@@ -4,7 +4,7 @@ import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-export default function ActiveLastBreadcrumb({ title }: any) {
+export default function ActiveLastBreadcrumb({ title, category }: any) {
   const [genre, setGenre] = useState<string>("");
   const [book, setBook] = useState<string>("");
 
@@ -12,9 +12,6 @@ export default function ActiveLastBreadcrumb({ title }: any) {
   const extractedGenre =
     getPathnameGenre.split("/")[2].charAt(0).toUpperCase() +
     getPathnameGenre.split("/")[2].slice(1);
-
-  const pathname = usePathname();
-  const genreBasePath = pathname.split("/").slice(0, 3).join("/");
 
   useEffect(() => {
     const setPathnames = () => {
@@ -25,10 +22,6 @@ export default function ActiveLastBreadcrumb({ title }: any) {
     setPathnames();
   }, [extractedGenre, title]);
 
-  console.log({
-    bookExtracted: book,
-    basePath: genreBasePath,
-  });
 
   return (
     <Container
@@ -41,8 +34,17 @@ export default function ActiveLastBreadcrumb({ title }: any) {
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
+        {/*Home link*/}
         <Link href="/">Home</Link>
-        <Link href={`${genreBasePath}`}>{genre}</Link>
+
+        {/*Genre link and typography component - conditionally rendered.*/}
+        {book ? (
+          <Link href={`/categories/${category}`}>{category}</Link>
+        ) : (
+          <Typography>{category}</Typography>
+        )}
+
+        {/*Book title*/}
         <Typography>{book}</Typography>
       </Breadcrumbs>
     </Container>

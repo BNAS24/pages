@@ -79,6 +79,11 @@ export default function CategoryPage() {
     );
   }
 
+  console.log({
+    books: books,
+    category: category,
+  });
+
   return (
     <Container
       disableGutters={true}
@@ -88,12 +93,13 @@ export default function CategoryPage() {
         width: "100%",
       }}
     >
-      <ActiveLastBreadcrumb />
+      <ActiveLastBreadcrumb category={category}/>
       <Container
         sx={{
           display: "flex",
           flexWrap: "wrap",
           alignItems: "flex-start",
+          alignContent: "flex-start",
           justifyContent: "center",
           gap: "1rem",
           width: "100%",
@@ -112,6 +118,7 @@ export default function CategoryPage() {
               maxWidth="88px"
               fontSize="0.8rem"
               link={book.id}
+              category={category}
             />
           ))
         ) : (

@@ -19,6 +19,7 @@ export const Footer = () => {
       }}
     >
       <Typography
+      align="center"
         sx={{
           fontSize: "1rem",
           color: theme.palette.primary.contrastText,
@@ -27,6 +28,8 @@ export const Footer = () => {
         Powered by Google Books
       </Typography>
       <Typography
+            align="center"
+
         sx={{
           fontSize: "1rem",
           color: theme.palette.primary.contrastText,
