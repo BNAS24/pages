@@ -34,7 +34,6 @@ export default function BookDetails() {
     getBookDetails();
   }, [bookId]);
 
-  console.log("Book Details:", bookDetails);
   return (
     <Container
       disableGutters={true}
