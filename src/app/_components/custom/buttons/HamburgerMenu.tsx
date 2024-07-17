@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+"use client"
 import { animated, useSpring } from "@react-spring/web";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
 import { Box } from "@mui/material";
@@ -13,7 +13,7 @@ const HamburgerMenu = () => {
   const firstLineProps = useSpring({
     transform: menuOpen
       ? "rotate(45deg) translate(8.5px, -12px)"
-      : "rotate(0deg) translate(0, 0)",
+      : "rotate(0deg) translate(0px, 0px)",
   });
 
   const secondLineProps = useSpring({
@@ -23,11 +23,12 @@ const HamburgerMenu = () => {
   const thirdLineProps = useSpring({
     transform: menuOpen
       ? "rotate(-45deg) translate(-20px,0px)"
-      : "rotate(0deg) translate(0, 0)",
+      : "rotate(0deg) translate(0px, 0px)",
   });
 
   return (
     <Box
+    onClick={handleMenuOpen}
       sx={{
         display: {
           xs: "flex",
@@ -41,7 +42,6 @@ const HamburgerMenu = () => {
       }}
     >
       <svg
-        onClick={handleMenuOpen}
         className="hamburger-menu"
         width={40}
         height={40}
