@@ -88,19 +88,20 @@ export default function CategoryPage() {
         width: "100%",
       }}
     >
-      <ActiveLastBreadcrumb category={category}/>
+      <ActiveLastBreadcrumb category={category} />
       <Container
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "flex-start",
-          alignContent: "flex-start",
-          justifyContent: "center",
-          gap: "1rem",
-          width: "100%",
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(3, 1fr)", // 0px
+            sm: "repeat(5, 1fr)", // 600px
+            md: "repeat(8, 1fr)", // 900px
+            lg: "repeat(9, 1fr)", // 1200px
+            xl: "repeat(9, 1fr)", // 1536px
+          },
+          rowGap: "1rem", 
           minHeight: "100vh",
           paddingY: "1.5rem",
-          overflowX: "hidden",
           backgroundColor: theme.palette.primary.main,
         }}
       >
