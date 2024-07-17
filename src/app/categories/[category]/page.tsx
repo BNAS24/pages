@@ -89,6 +89,16 @@ export default function CategoryPage() {
       }}
     >
       <ActiveLastBreadcrumb category={category} />
+
+      <Container
+disableGutters={true}
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: theme.palette.primary.main,
+      }}
+      >
+
+      {/*Grid component*/}
       <Container
         sx={{
           display: "grid",
@@ -100,7 +110,7 @@ export default function CategoryPage() {
             xl: "repeat(9, 1fr)", // 1536px
           },
           rowGap: "1rem", 
-          minHeight: "100vh",
+          // minHeight: "100vh",
           paddingY: "1.5rem",
           backgroundColor: theme.palette.primary.main,
         }}
@@ -120,6 +130,8 @@ export default function CategoryPage() {
         ) : (
           <Typography variant="h1">No books available</Typography>
         )}
+      </Container>
+
       </Container>
     </Container>
   );
