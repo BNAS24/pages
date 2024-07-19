@@ -91,47 +91,45 @@ export default function CategoryPage() {
       <ActiveLastBreadcrumb category={category} />
 
       <Container
-disableGutters={true}
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: theme.palette.primary.main,
-      }}
-      >
-
-      {/*Grid component*/}
-      <Container
+        disableGutters={true}
         sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(3, 1fr)", // 0px
-            sm: "repeat(5, 1fr)", // 600px
-            md: "repeat(8, 1fr)", // 900px
-            lg: "repeat(9, 1fr)", // 1200px
-            xl: "repeat(9, 1fr)", // 1536px
-          },
-          rowGap: "1rem", 
-          // minHeight: "100vh",
-          paddingY: "1.5rem",
+          minHeight: "100vh",
           backgroundColor: theme.palette.primary.main,
         }}
       >
-        {books ? (
-          books.map((book: any) => (
-            <Book
-              key={book.id}
-              title={book.volumeInfo.title}
-              bookCover={book.volumeInfo.imageLinks?.thumbnail}
-              maxWidth="88px"
-              fontSize="0.8rem"
-              link={book.id}
-              category={category}
-            />
-          ))
-        ) : (
-          <Typography variant="h1">No books available</Typography>
-        )}
-      </Container>
-
+        {/*Grid component*/}
+        <Container
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(3, 1fr)", // 0px
+              sm: "repeat(5, 1fr)", // 600px
+              md: "repeat(8, 1fr)", // 900px
+              lg: "repeat(9, 1fr)", // 1200px
+              xl: "repeat(9, 1fr)", // 1536px
+            },
+            rowGap: "1rem",
+            // minHeight: "100vh",
+            paddingY: "1.5rem",
+            backgroundColor: theme.palette.primary.main,
+          }}
+        >
+          {books ? (
+            books.map((book: any) => (
+              <Book
+                key={book.id}
+                title={book.volumeInfo.title}
+                bookCover={book.volumeInfo.imageLinks?.thumbnail}
+                maxWidth="88px"
+                fontSize="1rem"
+                link={book.id}
+                category={category}
+              />
+            ))
+          ) : (
+            <Typography variant="h1">No books available</Typography>
+          )}
+        </Container>
       </Container>
     </Container>
   );

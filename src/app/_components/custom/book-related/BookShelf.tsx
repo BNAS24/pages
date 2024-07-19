@@ -5,7 +5,7 @@ import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 
 const CollectionTitle = ({ title }: any) => {
-  const fontSize = "1.5rem";
+  const fontSize = "1.6rem";
 
   return (
     <Container
@@ -114,7 +114,7 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
 
   return (
     <Container disableGutters={true}>
-      <CollectionTitle title={collectionTitle} />{" "}
+      <CollectionTitle title={collectionTitle} />
       <Container
         ref={emblaRef}
         component="section"

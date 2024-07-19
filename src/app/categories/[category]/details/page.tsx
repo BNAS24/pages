@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Breadcrumbs from "@/app/_components/custom/navigation/Breadcrumbs";
 import Image from "next/image";
 import { theme } from "@/app/_styles/muiTheme";
-import { stripHTML } from "@/app/utils/removeHTMLFromContent";
+import { stripHTML } from "@/app/_utils/removeHTMLFromContent";
 
 export default function BookDetails() {
   const [bookDetails, setDetails] = useState<any>({});

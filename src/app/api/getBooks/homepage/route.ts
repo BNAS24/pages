@@ -1,10 +1,10 @@
 // @desc Get list of all books from Google Books API
 // @route /api/getBooks/homepage
 // @access Public
-import fetchData from "@/app/utils/fetchData";
+import fetchData from "@/app/_utils/fetchData";
 import { NextResponse } from "next/server";
-import { filterBooks } from "@/app/utils/filterBooks";
-import { generateResponse } from "@/app/utils/bookCategories";
+import { filterBooks } from "@/app/_utils/filterBooks";
+import { generateResponse } from "@/app/_utils/bookCategories";
 
 export async function GET() {
   try {

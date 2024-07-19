@@ -10,6 +10,7 @@ import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
 import { theme } from "./_styles/muiTheme";
 import "./globals.css";
 import { Footer } from "./_components/custom/navigation/Footer";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function RootLayout({
   children,
@@ -22,15 +23,17 @@ export default function RootLayout({
         <title>Pages</title>
         <meta name="description" content="Read your favorite books anywhere!" />
       </head>
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <MenuProvider>
-            <CssBaseline>
-              <LayoutWrapper>{children}</LayoutWrapper>
-            </CssBaseline>
-          </MenuProvider>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
+      <UserProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <MenuProvider>
+              <CssBaseline>
+                <LayoutWrapper>{children}</LayoutWrapper>
+              </CssBaseline>
+            </MenuProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </UserProvider>
     </html>
   );
 }
