@@ -1,14 +1,17 @@
-import { Button, Container, Typography } from "@mui/material";
+import { Avatar, Button, Container, Typography } from "@mui/material";
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { useMenu } from "@/app/_hooks/useBodyStyle";
 import { theme } from "@/app/_styles/muiTheme";
 import { navigationLinks } from "@/app/_assets/NavLinks";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
+// Wrapping MUI Container component inside a react-spring component for more efficient usability and handling
 const SideMenuContainer = animated(Container);
 
 export const SideMenu = () => {
+  const { user } = useUser();
   const [animationComplete, setAnimationComplete] = useState(true);
 
   const { menuOpen, handleMenuOpen } = useMenu();
@@ -67,6 +70,16 @@ export const SideMenu = () => {
             padding: "1rem 1rem",
           }}
         >
+          {user && (
+            <Avatar
+              onClick={handleMenuOpen}
+              component={Link}
+              href="/dashboard"
+              sx={{ visibility: menuOpen ? "visible" : "hidden", alignSelf: "flex-end" }}
+            >
+              B
+            </Avatar>
+          )}
           {/*List of navigation links*/}
           {navigationLinks &&
             navigationLinks.map((linkData: any) => (
@@ -109,6 +122,9 @@ export const SideMenu = () => {
           <Button
             disableElevation={true}
             variant="outlined"
+            onClick={handleMenuOpen}
+            component={Link}
+            href="/onboarding"
             sx={{
               flexGrow: 0,
               flexShrink: 0,
@@ -121,6 +137,9 @@ export const SideMenu = () => {
           <Button
             disableElevation={true}
             variant="contained"
+            onClick={handleMenuOpen}
+            component={Link}
+            href="/onboarding"
             sx={{
               flexGrow: 0,
               flexShrink: 0,

@@ -1,12 +1,18 @@
 "use client";
-import { Container, Typography } from "@mui/material/";
+import { Avatar, Container, Typography } from "@mui/material/";
 import { theme } from "../../../_styles/muiTheme";
 import BrandLogo from "../buttons/BrandLogo";
 import HamburgerMenu from "../buttons/HamburgerMenu";
 import { navigationLinks } from "@/app/_assets/NavLinks";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export const NavBar = () => {
+  const { user } = useUser();
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Container
       component="nav"
@@ -52,7 +58,7 @@ export const NavBar = () => {
                     md: "1.1rem", // 900px
                     lg: "1.5rem", // 1200px
                     xl: "1.5rem", // 1536px
-                  }
+                  },
                 }}
               >
                 {linkData.title}
@@ -60,7 +66,13 @@ export const NavBar = () => {
             </Link>
           ))}
       </Container>
-      <HamburgerMenu />
+      {user && isLargeScreen ? (
+        <Avatar component={Link} href="/dashboard">
+          B
+        </Avatar>
+      ) : (
+        <HamburgerMenu />
+      )}
     </Container>
   );
 };

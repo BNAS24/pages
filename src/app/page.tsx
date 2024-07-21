@@ -6,9 +6,23 @@ import { useEffect, useState } from "react";
 import { BookCollection } from "./_types/types/bookCollectionTypes";
 import Loading from "./_components/custom/loading/Progress";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
   const [bookList, setBookList] = useState<BookCollection[]>([]);
+  const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    const signedIn = localStorage.getItem("user");
+
+    if (!signedIn && user) {
+      console.log("user being added to localStorage");
+      localStorage.setItem("user", `${user.sid}`);
+      router.push("/dashboard");
+    }
+  }, [router, user]);
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -73,7 +87,7 @@ export default function Home() {
       </Container>
     );
   }
-  
+
   return (
     <Container
       disableGutters={true}

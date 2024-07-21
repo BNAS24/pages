@@ -1,4 +1,7 @@
+"use client";
 import { Button, Container } from "@mui/material";
+
+const removeUser = () => localStorage.removeItem("user");
 
 const SignUp = () => {
   return <></>;
@@ -14,7 +17,7 @@ export default function OnBoarding() {
       <a href="/api/auth/login">
         <Button>Login</Button>
       </a>
-      <a href="/api/auth/logout">
+      <a href="/api/auth/logout" onClick={removeUser}>
         <Button>Logout</Button>
       </a>
     </Container>
