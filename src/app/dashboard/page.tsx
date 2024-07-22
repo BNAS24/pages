@@ -1,5 +1,5 @@
 "use client";
-import { Container, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { theme } from "@/app/_styles/muiTheme";
@@ -9,6 +9,8 @@ export default function Dashboard() {
   const router = useRouter();
   const { user } = useUser();
   const [userInfo, setUserInfo] = useState<any>({});
+
+  const removeUser = () => localStorage.removeItem("user");
 
   useEffect(() => {
     const signedIn = localStorage.getItem("user");
@@ -38,6 +40,9 @@ export default function Dashboard() {
           Welcome back! {userInfo.nickname}
         </Typography>
       )}
+      <a href="/api/auth/logout" onClick={removeUser}>
+        <Button>Logout</Button>
+      </a>
     </Container>
   );
-};
+}

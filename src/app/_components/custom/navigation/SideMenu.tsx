@@ -75,7 +75,10 @@ export const SideMenu = () => {
               onClick={handleMenuOpen}
               component={Link}
               href="/dashboard"
-              sx={{ visibility: menuOpen ? "visible" : "hidden", alignSelf: "flex-end" }}
+              sx={{
+                visibility: menuOpen ? "visible" : "hidden",
+                alignSelf: "flex-end",
+              }}
             >
               B
             </Avatar>
@@ -119,36 +122,37 @@ export const SideMenu = () => {
             width: "100%",
           }}
         >
-          <Button
-            disableElevation={true}
-            variant="outlined"
-            onClick={handleMenuOpen}
-            component={Link}
-            href="/onboarding"
-            sx={{
-              flexGrow: 0,
-              flexShrink: 0,
-              minWidth: "92px",
-              borderRadius: "2rem",
-            }}
-          >
-            Sign Up
-          </Button>
-          <Button
-            disableElevation={true}
-            variant="contained"
-            onClick={handleMenuOpen}
-            component={Link}
-            href="/onboarding"
-            sx={{
-              flexGrow: 0,
-              flexShrink: 0,
-              minWidth: "92px",
-              borderRadius: "2rem",
-            }}
-          >
-            Join Now
-          </Button>
+          <a href="/api/auth/login" rel="noopener noreferrer">
+            <Button
+              disableElevation={true}
+              variant="outlined"
+              onClick={handleMenuOpen}
+              sx={{
+                flexGrow: 0,
+                flexShrink: 0,
+                minWidth: "92px",
+                borderRadius: "2rem",
+              }}
+            >
+              Sign In
+            </Button>
+          </a>
+
+          <a href="/api/auth/login" rel="noopener noreferrer">
+            <Button
+              disableElevation={true}
+              variant="contained"
+              onClick={handleMenuOpen}
+              sx={{
+                flexGrow: 0,
+                flexShrink: 0,
+                minWidth: "92px",
+                borderRadius: "2rem",
+              }}
+            >
+              Join Now
+            </Button>
+          </a>
         </Container>
       </Container>
     </SideMenuContainer>

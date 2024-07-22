@@ -135,8 +135,6 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
             justifyContent: "space-between",
             gap: "16px",
             width: "100%",
-            // overflowX: "auto",
-            // overflow: "hidden",
             scrollbarWidth: "none", // For Firefox
             "&::-webkit-scrollbar": {
               display: "none", // For Chrome, Safari, and Opera
