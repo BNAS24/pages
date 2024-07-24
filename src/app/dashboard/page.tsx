@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { theme } from "@/app/_styles/muiTheme";
 import { useRouter } from "next/navigation";
-import { Bookmark } from "@/app/_types/interfaces/bookmark";
+import { User } from "@/app/models/User";
+import Loading from "@/app/_components/custom/loading/Progress";
+import Image from "next/image";
 
 export default function Dashboard() {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
+  const [userDBData, setUserDBData] = useState<User | null>(null);
   const router = useRouter();
   const { user } = useUser();
 
@@ -36,7 +38,7 @@ export default function Dashboard() {
 
       console.log("data", data);
 
-      setBookmarks(data.bookmarks);
+      setUserDBData(data);
     };
 
     if (user) {
@@ -46,40 +48,79 @@ export default function Dashboard() {
 
   console.log("user: ", user);
 
-  return (
-    //Greeting the user
-    <Container sx={{ minHeight: "100vh" }}>
-      {user?.nickname && (
-        <Typography
-          component="h1"
-          variant="h4"
-          align="center"
-          fontWeight={700}
+  if (!userDBData) {
+    return (
+      <Container
+        disableGutters={true}
+        maxWidth={false}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <Loading />
+        <Container
           sx={{
+            flex: 1,
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            minHeight: "200px",
-            color: theme.palette.primary.main,
           }}
         >
-          Welcome back! {user.nickname}
-        </Typography>
-      )}
-
-      {/*Show bookmarks saved by user*/}
-      <Container>
-        {bookmarks.length > 0 ? (
-          bookmarks.map((book, index) => (
-            <Typography key={index}>{book.title}</Typography>
-          ))
-        ) : (
-          <Typography align="center">No Bookmarks Yet!</Typography>
-        )}
+          <Image
+            src="/icons/logo-64.png"
+            alt="splash screen logo"
+            height={64}
+            width={64}
+            style={{
+              marginBottom: "2rem",
+            }}
+          />
+        </Container>
       </Container>
-      <a href="/api/auth/logout" onClick={removeUser}>
-        <Button variant="contained">Logout</Button>
-      </a>
+    );
+  }
+
+  return (
+    // Greeting the user
+    <Container sx={{ minHeight: "100vh" }}>
+      {userDBData && (
+        <>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            fontWeight={700}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "200px",
+              color: theme.palette.primary.main,
+            }}
+          >
+            {`Welcome Back ${userDBData.username}!`}
+          </Typography>
+
+          {/* Show bookmarks saved by user */}
+          <Container>
+            {userDBData.bookmarks.length > 0 ? (
+              userDBData.bookmarks.map((book, index) => (
+                <Typography key={index}>{book.title}</Typography>
+              ))
+            ) : (
+              <Typography align="center">You currently have no bookmarks saved</Typography>
+            )}
+          </Container>
+          <a href="/api/auth/logout" onClick={removeUser}>
+            <Button variant="contained">Logout</Button>
+          </a>
+        </>
+      )}
     </Container>
   );
 }

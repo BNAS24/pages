@@ -11,7 +11,8 @@ interface Book {
 export interface User {
   userId: string;
   nickname: string;
-  bookmark: Book[];
+  username: string;
+  bookmarks: Book[];
 }
 
 const userSchema = new Schema<User>({});

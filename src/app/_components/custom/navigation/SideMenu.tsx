@@ -29,6 +29,8 @@ export const SideMenu = () => {
     },
   });
 
+  console.log("user", user);
+
   return (
     <SideMenuContainer
       disableGutters={true}
@@ -115,7 +117,7 @@ export const SideMenu = () => {
         <Container
           maxWidth={false}
           sx={{
-            display: "flex",
+            display: user === undefined ? "flex" : "none",
             flexDirection: "row",
             alignItems: "center",
             gap: "1rem",
