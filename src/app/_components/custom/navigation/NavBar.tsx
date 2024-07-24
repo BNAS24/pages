@@ -67,8 +67,12 @@ export const NavBar = () => {
           ))}
       </Container>
       {user && isLargeScreen ? (
-        <Avatar component={Link} href="/dashboard">
-          B
+        <Avatar
+          component={Link}
+          href="/dashboard"
+          src={user.picture!}
+          alt={user.nickname!}
+        >
         </Avatar>
       ) : (
         <HamburgerMenu />

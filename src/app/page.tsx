@@ -18,7 +18,6 @@ export default function Home() {
     const signedIn = localStorage.getItem("user");
 
     if (!signedIn && user) {
-      console.log("user being added to localStorage");
       localStorage.setItem("user", `${user.sid}`);
       router.push("/dashboard");
     }

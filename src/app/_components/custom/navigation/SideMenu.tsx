@@ -75,12 +75,13 @@ export const SideMenu = () => {
               onClick={handleMenuOpen}
               component={Link}
               href="/dashboard"
+              src={user.picture!}
+              alt={user.nickname!}
               sx={{
                 visibility: menuOpen ? "visible" : "hidden",
                 alignSelf: "flex-end",
               }}
             >
-              B
             </Avatar>
           )}
           {/*List of navigation links*/}
