@@ -7,7 +7,8 @@ export async function GET(req: NextRequest) {
   // Extract user id from body
   const email = req.nextUrl.searchParams.get("email");
   
-  console.log("email", email);
+  console.log("email in server", email);
+  
   try {
     await dbConnect();
 
