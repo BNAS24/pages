@@ -110,7 +110,7 @@ export default function Dashboard() {
               color: theme.palette.primary.main,
             }}
           >
-            {`Welcome Back ${userDBData.username}!`}
+            {`Welcome ${userDBData.username}!`}
           </Typography>
 
           {/* Show bookmarks saved by user */}
