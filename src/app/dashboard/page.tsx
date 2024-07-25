@@ -87,7 +87,14 @@ export default function Dashboard() {
 
   return (
     // Greeting the user
-    <Container sx={{ minHeight: "100vh" }}>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
       {userDBData && (
         <>
           <Typography
@@ -113,10 +120,26 @@ export default function Dashboard() {
                 <Typography key={index}>{book.title}</Typography>
               ))
             ) : (
-              <Typography align="center">You currently have no bookmarks saved</Typography>
+              <Typography
+                align="center"
+                fontWeight={600}
+                sx={{
+                  fontSize: "1rem",
+                }}
+              >
+                You currently have no bookmarks saved
+              </Typography>
             )}
           </Container>
-          <a href="/api/auth/logout" onClick={removeUser}>
+
+          {/*Logout button*/}
+          <a
+            href="/api/auth/logout"
+            onClick={removeUser}
+            style={{
+              marginTop: "1rem",
+            }}
+          >
             <Button variant="contained">Logout</Button>
           </a>
         </>
