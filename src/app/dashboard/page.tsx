@@ -137,7 +137,7 @@ export default function Dashboard() {
             href="/api/auth/logout"
             onClick={removeUser}
             style={{
-              marginTop: "1rem",
+              marginTop: "2rem",
             }}
           >
             <Button variant="contained">Logout</Button>
