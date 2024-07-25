@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const getAdditionalUserInfo = async () => {
-      const response = await fetch(`api/user?email=${user?.email}`);
+      const response = await fetch(`/api/user?email=${user?.email}`);
 
       if (!response.ok) {
         throw new Error(
