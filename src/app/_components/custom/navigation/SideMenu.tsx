@@ -29,8 +29,6 @@ export const SideMenu = () => {
     },
   });
 
-  console.log("user", user);
-
   return (
     <SideMenuContainer
       disableGutters={true}

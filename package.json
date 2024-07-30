@@ -18,6 +18,7 @@
     "@mui/material": "^5.15.21",
     "@mui/material-nextjs": "^5.15.11",
     "@react-spring/web": "^9.7.3",
+    "@types/mongoose": "^5.11.97",
     "embla-carousel-react": "^8.1.6",
     "mongoose": "^8.5.1",
     "next": "14.2.4",

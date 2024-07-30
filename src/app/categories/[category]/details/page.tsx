@@ -8,7 +8,7 @@ import { theme } from "@/app/_styles/muiTheme";
 import { stripHTML } from "@/app/_utils/removeHTMLFromContent";
 
 export default function BookDetails() {
-  const [bookDetails, setDetails] = useState<any>({});
+  const [bookDetails, setBookDetails] = useState<any>({});
 
   const searchParams = useSearchParams();
   const bookId = searchParams.get("book");
@@ -27,12 +27,14 @@ export default function BookDetails() {
 
       const details = await response.json();
 
-      setDetails({ ...details });
+      setBookDetails({ ...details });
     };
 
     // Load it's details
     getBookDetails();
   }, [bookId]);
+
+  console.log("details", bookDetails);
 
   return (
     <Container
