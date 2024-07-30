@@ -25,6 +25,7 @@ export const UserData = async () => {
 
   return (
     <Container
+      disableGutters={true}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -51,32 +52,32 @@ export const UserData = async () => {
 
           {/* Show bookmarks saved by user */}
           <Container
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(3, 1fr)", // 0px
-              sm: "repeat(5, 1fr)", // 600px
-              md: "repeat(8, 1fr)", // 900px
-              lg: "repeat(9, 1fr)", // 1200px
-              xl: "repeat(9, 1fr)", // 1536px
-            },
-            rowGap: "1rem",
-            // minHeight: "100vh",
-            paddingY: "1.5rem",
-            backgroundColor: "var(--palette-primary-main)",
-          }}
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(3, 1fr)", // 0px
+                sm: "repeat(5, 1fr)", // 600px
+                md: "repeat(8, 1fr)", // 900px
+                lg: "repeat(9, 1fr)", // 1200px
+                xl: "repeat(9, 1fr)", // 1536px
+              },
+              rowGap: "1rem",
+              // minHeight: "100vh",
+              paddingY: "1.5rem",
+              backgroundColor: "var(--palette-primary-main)",
+            }}
           >
             {bookmarks.length > 0 ? (
               bookmarks.map((book: any) => (
                 <Book
-                key={book.googleBookId}
-                title={book.title}
-                bookCover={book.image}
-                maxWidth="88px"
-                fontSize="1rem"
-                link={book.googleBooksId}
-                category={book.category}
-              />
+                  key={book.googleBookId}
+                  title={book.title}
+                  bookCover={book.image}
+                  maxWidth="88px"
+                  fontSize="1rem"
+                  link={book.googleBooksId}
+                  category={book.category}
+                />
               ))
             ) : (
               <Typography
