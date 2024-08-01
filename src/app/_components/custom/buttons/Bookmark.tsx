@@ -2,12 +2,18 @@ import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
+interface BookmarkProps {
+  bookDetails: any;
+  category: string | undefined | null;
+}
+
 interface BookmarkParams {
   userSub: string | undefined;
   bookDetails: any;
+  category?: string | undefined| null;
 }
 
-const Bookmark = (bookDetails: any) => {
+const Bookmark = ({ bookDetails, category }: BookmarkProps) => {
   const { user } = useUser();
   const [bookSaved, setBookSaved] = useState<boolean>(false);
 
@@ -26,15 +32,10 @@ const Bookmark = (bookDetails: any) => {
       const data = await response.json();
       const bookmarks = data.bookmarks;
 
-      //   const checkIfBookmarked = bookmarks.map(
-      //     (book: any) => book.googleBooksId === bookDetails.bookDetails.id
-      //   );
-
       const checkIfBookmarked = bookmarks.some(
-        (book: any) => book.googleBooksId === bookDetails.bookDetails.id
+        (book: any) => book.googleBooksId === bookDetails.id
       );
 
-      console.log("isBookmarked:", checkIfBookmarked);
       setBookSaved(checkIfBookmarked ? true : false);
     };
 
@@ -48,8 +49,19 @@ const Bookmark = (bookDetails: any) => {
 
   const toggleSaveBook = () => setBookSaved(!bookSaved);
 
-  const saveBookmarkInDB = async ({ userSub, bookDetails }: BookmarkParams) => {
+  const saveBookmarkInDB = async ({
+    userSub,
+    bookDetails,
+    category,
+  }: BookmarkParams) => {
     try {
+      const book: any = {
+        ...bookDetails,
+        category: category,
+      };
+
+      console.log("category added to book", book);
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/bookmarks?userId=${userSub}`,
         {
@@ -57,7 +69,7 @@ const Bookmark = (bookDetails: any) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(bookDetails.bookDetails),
+          body: JSON.stringify(book),
         }
       );
 
@@ -79,7 +91,7 @@ const Bookmark = (bookDetails: any) => {
   }: BookmarkParams) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/bookmarks?userId=${userSub}&bookId=${bookDetails.bookDetails.id}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/bookmarks?userId=${userSub}&bookId=${bookDetails.id}`,
         {
           method: "DELETE",
         }
@@ -103,10 +115,11 @@ const Bookmark = (bookDetails: any) => {
         message: "details in handle",
         sub: userSub,
         bookDetails: bookDetails,
+        category: category,
       });
       toggleSaveBook();
       !bookSaved
-        ? saveBookmarkInDB({ userSub, bookDetails })
+        ? saveBookmarkInDB({ userSub, bookDetails, category })
         : unsaveBookmarkInDB({ userSub, bookDetails });
     } else {
       console.error("User not found");

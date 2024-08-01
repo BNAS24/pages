@@ -22,9 +22,6 @@ export const UserData = async () => {
   const data = await response.json();
   const bookmarks = data.bookmarks;
 
-  console.log("sessions: ", session);
-  console.log("user data fetched:", data);
-
   return (
     <Container
       disableGutters={true}

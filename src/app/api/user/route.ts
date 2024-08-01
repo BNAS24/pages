@@ -51,7 +51,6 @@ export async function GET(req: NextRequest) {
     // Attach the populated books to the user object
     user.bookmarks = books;
 
-    console.log("user on server populate", user);
     // Send user data in response
     return NextResponse.json(user);
   } catch (error: any) {

@@ -11,9 +11,6 @@ export async function PUT(req: NextRequest) {
   // Retrieve book information from request
   const bookData = await req.json();
 
-  console.log("Book from request:", bookData);
-  console.log("userId:", userId);
-
   // Ensure both userId and bookData are provided
   if (!userId || !bookData) {
     return NextResponse.json(
@@ -21,6 +18,8 @@ export async function PUT(req: NextRequest) {
       { status: 400 }
     );
   }
+
+  console.log("book from request:", bookData);
 
   try {
     // Connect db to server
@@ -44,6 +43,7 @@ export async function PUT(req: NextRequest) {
         googleBooksId: bookData.id,
         author: bookData.volumeInfo.authors.join(","),
         image: bookData.volumeInfo.imageLinks.thumbnail,
+        category: bookData.category,
       });
 
       // Save book in the db
@@ -103,8 +103,6 @@ export async function DELETE(req: NextRequest) {
       { status: 400 }
     );
   }
-
-  console.log("deleting", bookId);
 
   try {
     // Connect db to server

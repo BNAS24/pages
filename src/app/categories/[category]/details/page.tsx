@@ -77,7 +77,6 @@ export default function BookDetails() {
                 color: theme.palette.secondary.main,
               }}
             >
-              By:{" "}
               {bookDetails.volumeInfo.authors.length > 1
                 ? bookDetails.volumeInfo.authors.join(", ")
                 : bookDetails.volumeInfo.authors[0]}
@@ -190,7 +189,7 @@ export default function BookDetails() {
               </Container>
             </Container>
 
-            <Bookmark bookDetails={bookDetails}/>
+            <Bookmark bookDetails={bookDetails} category={category}/>
 
             {/*Book description */}
             <Container
