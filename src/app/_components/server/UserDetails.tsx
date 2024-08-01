@@ -10,7 +10,9 @@ export const UserData = async () => {
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${session?.user.email}&sub=${session?.user.sub.split("|")[1]}`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${session?.user.email}&sub=${session?.user.sub.split("|")[1]}`,{
+      cache: "no-store",
+    }
   );
 
   if (!response.ok) {
