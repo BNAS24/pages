@@ -6,6 +6,7 @@ import { theme } from "@/app/_styles/muiTheme";
 import { navigationLinks } from "@/app/_assets/NavLinks";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { LogOut } from "@/app/_components/custom/navigation/LogOut";
 
 // Wrapping MUI Container component inside a react-spring component for more efficient usability and handling
 const SideMenuContainer = animated(Container);
@@ -81,8 +82,7 @@ export const SideMenu = () => {
                 visibility: menuOpen ? "visible" : "hidden",
                 alignSelf: "flex-end",
               }}
-            >
-            </Avatar>
+            ></Avatar>
           )}
           {/*List of navigation links*/}
           {navigationLinks &&
@@ -115,7 +115,7 @@ export const SideMenu = () => {
         <Container
           maxWidth={false}
           sx={{
-            display: user === undefined ? "flex" : "none",
+            display: "flex",
             flexDirection: "row",
             alignItems: "center",
             gap: "1rem",
@@ -123,37 +123,42 @@ export const SideMenu = () => {
             width: "100%",
           }}
         >
-          <a href="/api/auth/login" rel="noopener noreferrer">
-            <Button
-              disableElevation={true}
-              variant="outlined"
-              onClick={handleMenuOpen}
-              sx={{
-                flexGrow: 0,
-                flexShrink: 0,
-                minWidth: "92px",
-                borderRadius: "2rem",
-              }}
-            >
-              Sign In
-            </Button>
-          </a>
-
-          <a href="/api/auth/login" rel="noopener noreferrer">
-            <Button
-              disableElevation={true}
-              variant="contained"
-              onClick={handleMenuOpen}
-              sx={{
-                flexGrow: 0,
-                flexShrink: 0,
-                minWidth: "92px",
-                borderRadius: "2rem",
-              }}
-            >
-              Join Now
-            </Button>
-          </a>
+          {user === undefined ? (
+            <>
+              <a href="/api/auth/login" rel="noopener noreferrer">
+                <Button
+                  disableElevation={true}
+                  variant="outlined"
+                  onClick={handleMenuOpen}
+                  sx={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    minWidth: "92px",
+                    borderRadius: "2rem",
+                  }}
+                >
+                  Sign In
+                </Button>
+              </a>
+              <a href="/api/auth/login" rel="noopener noreferrer">
+                <Button
+                  disableElevation={true}
+                  variant="contained"
+                  onClick={handleMenuOpen}
+                  sx={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    minWidth: "92px",
+                    borderRadius: "2rem",
+                  }}
+                >
+                  Join Now
+                </Button>
+              </a>
+            </>
+          ) : (
+            <LogOut />
+          )}
         </Container>
       </Container>
     </SideMenuContainer>

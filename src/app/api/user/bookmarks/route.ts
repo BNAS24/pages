@@ -9,8 +9,7 @@ export async function PUT(req: NextRequest) {
   const userId = req.nextUrl.searchParams.get("userId");
 
   // Retrieve book information from request
-  const request = await req.json();
-  const bookData = request.book;
+  const bookData = await req.json();
 
   console.log("Book from request:", bookData);
   console.log("userId:", userId);
@@ -33,19 +32,18 @@ export async function PUT(req: NextRequest) {
 
     // Check if book already exists in database
     const bookExists: BookType | null = await Book.findOne({
-      googleBooksId: bookData.googleBooksId,
+      googleBooksId: bookData.id,
     });
 
     // If the book doesnt exist we create a new book in the db and then update the user's bookmarks information.
     if (!bookExists) {
       const book: BookType = new Book({
-        title: bookData.title,
-        description: bookData.description,
-        link: bookData.link,
-        googleBooksId: bookData.googleBooksId,
-        author: bookData.author,
-        image: bookData.image,
-        category: bookData.category,
+        title: bookData.volumeInfo.title,
+        description: bookData.volumeInfo.description,
+        link: bookData.volumeInfo.previewLink,
+        googleBooksId: bookData.id,
+        author: bookData.volumeInfo.authors.join(","),
+        image: bookData.volumeInfo.imageLinks.thumbnail,
       });
 
       // Save book in the db
@@ -53,8 +51,12 @@ export async function PUT(req: NextRequest) {
 
       // Adds book to user bookmark list
       await userCollection.updateOne(
-        { _id: new mongoose.Types.ObjectId(userId) },
-        { $addToSet: { bookmarks: book._id } }
+        { sub: userId },
+        {
+          $addToSet: {
+            bookmarks: new mongoose.Types.ObjectId(book._id as string),
+          },
+        }
       );
 
       console.log("Book created:", book);
@@ -65,8 +67,12 @@ export async function PUT(req: NextRequest) {
 
     // If book already exists in the db , then it updates users bookmarks accordingly.
     await userCollection.updateOne(
-      { _id: new mongoose.Types.ObjectId(userId) },
-      { $addToSet: { bookmarks: bookExists._id } }
+      { sub: userId },
+      {
+        $addToSet: {
+          bookmarks: new mongoose.Types.ObjectId(bookExists._id as string),
+        },
+      }
     );
 
     return NextResponse.json({
@@ -110,19 +116,20 @@ export async function DELETE(req: NextRequest) {
 
     // Find user in db
     const user: any = await userCollection.findOne({
-      _id: new mongoose.Types.ObjectId(userId),
+      sub: userId,
     });
 
-    const book = await Book.findById(bookId);
+    const book = await Book.findOne({ googleBooksId: bookId });
 
     if (!user || !book) {
-      throw new Error("User or book not found");
-    };
+      console.log("book:", book);
+      throw new Error("User or book not found", user);
+    }
 
     // Remove objectid from users bookmarks array
     await userCollection.updateOne(
-      { _id: new mongoose.Types.ObjectId(userId) },
-      { $pull: { bookmarks: new mongoose.Types.ObjectId(bookId) as any} }
+      { sub: userId },
+      { $pull: { bookmarks: book._id as any } }
     );
 
     return NextResponse.json({ message: "Book removed from bookmarks" });

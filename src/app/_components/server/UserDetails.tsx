@@ -10,7 +10,7 @@ export const UserData = async () => {
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${session?.user.email}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${session?.user.email}&sub=${session?.user.sub.split("|")[1]}`,
   );
 
   if (!response.ok) {
@@ -21,6 +21,8 @@ export const UserData = async () => {
 
   const data = await response.json();
   const bookmarks = data.bookmarks;
+
+  console.log("sessions: ", session);
   console.log("user data fetched:", data);
 
   return (
@@ -62,7 +64,6 @@ export const UserData = async () => {
                 xl: "repeat(9, 1fr)", // 1536px
               },
               rowGap: "1rem",
-              // minHeight: "100vh",
               paddingY: "1.5rem",
               backgroundColor: "var(--palette-primary-main)",
             }}

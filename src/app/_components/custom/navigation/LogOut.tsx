@@ -6,14 +6,20 @@ export const LogOut = () => {
 
   return (
     // Logout Button
-    <a
-      href="/api/auth/logout"
-      onClick={removeUser}
-      style={{
-        marginTop: "2rem",
-      }}
-    >
-      <Button variant="contained">Logout</Button>
+    <a href="/api/auth/logout" onClick={removeUser}>
+      <Button
+        // variant="contained"
+        disableElevation={true}
+        variant="outlined"
+        sx={{
+          flexGrow: 0,
+          flexShrink: 0,
+          minWidth: "92px",
+          borderRadius: "2rem",
+        }}
+      >
+        Logout
+      </Button>
     </a>
   );
 };

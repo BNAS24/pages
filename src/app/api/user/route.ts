@@ -6,6 +6,12 @@ import mongoose from "mongoose";
 export async function GET(req: NextRequest) {
   // Extract user email from body (auth0's user details)
   const email = req.nextUrl.searchParams.get("email");
+  const auth0Id = req.nextUrl.searchParams.get("sub");
+
+  if (!email || !auth0Id) {
+    console.error({ email: email, auth0Id: auth0Id });
+    throw new Error("email or auth0Id is not specified");
+  }
 
   try {
     // Connect db to server
@@ -19,11 +25,22 @@ export async function GET(req: NextRequest) {
     const bookCollection = db.collection("books");
 
     // Find user in db
-    const user = await userCollection.findOne({ email: email });
+    const user = await userCollection.findOne({ email: email, sub: auth0Id });
 
     if (!user) {
       throw new Error("User not found");
     }
+
+   // Add auth0 user-specific id to db for better authentication if it doesn't exist yet
+   if (!user.sub) {
+    const updateResult = await userCollection.updateOne(
+      { email: email },
+      { $set: { sub: auth0Id } }
+    );
+    if (updateResult.modifiedCount === 0) {
+      throw new Error("Failed to update user with auth0Id");
+    }
+  }
 
     // Manually populate the bookmarks
     const bookIds = user.bookmarks || [];

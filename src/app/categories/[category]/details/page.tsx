@@ -6,6 +6,7 @@ import Breadcrumbs from "@/app/_components/custom/navigation/Breadcrumbs";
 import Image from "next/image";
 import { theme } from "@/app/_styles/muiTheme";
 import { stripHTML } from "@/app/_utils/removeHTMLFromContent";
+import Bookmark from "@/app/_components/custom/buttons/Bookmark";
 
 export default function BookDetails() {
   const [bookDetails, setBookDetails] = useState<any>({});
@@ -33,8 +34,6 @@ export default function BookDetails() {
     // Load it's details
     getBookDetails();
   }, [bookId]);
-
-  console.log("details", bookDetails);
 
   return (
     <Container
@@ -191,6 +190,8 @@ export default function BookDetails() {
               </Container>
             </Container>
 
+            <Bookmark bookDetails={bookDetails}/>
+
             {/*Book description */}
             <Container
               sx={{
@@ -207,9 +208,9 @@ export default function BookDetails() {
               }}
             >
               <Typography
-              sx={{
-                fontSize: "1.1rem",
-              }}
+                sx={{
+                  fontSize: "1.1rem",
+                }}
               >
                 {stripHTML(bookDetails.volumeInfo.description)}
               </Typography>
