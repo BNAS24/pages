@@ -94,6 +94,9 @@ export default function CategoryPage() {
         disableGutters={true}
         sx={{
           minHeight: "100vh",
+          borderRadius: {
+            lg: "1rem 1rem 1rem 1rem",
+          },
           backgroundColor: theme.palette.primary.main,
         }}
       >
@@ -111,6 +114,9 @@ export default function CategoryPage() {
             rowGap: "1rem",
             // minHeight: "100vh",
             paddingY: "1.5rem",
+            borderRadius: {
+              lg: "1rem 1rem 1rem 1rem",
+            },
             backgroundColor: theme.palette.primary.main,
           }}
         >

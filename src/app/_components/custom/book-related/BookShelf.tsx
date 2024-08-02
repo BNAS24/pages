@@ -13,6 +13,9 @@ const CollectionTitle = ({ title }: any) => {
       sx={{
         display: "flex",
         paddingY: "1rem",
+        borderRadius: {
+          lg: "1rem 1rem 0 0",
+        },
         backgroundColor: theme.palette.primary.main,
       }}
     >
@@ -114,13 +117,19 @@ export const BookShelf = ({ collectionTitle, bookList }: any) => {
 
   return (
     <Container disableGutters={true}>
+
+      {/*Title section of the component*/}
       <CollectionTitle title={collectionTitle} />
+      
       <Container
         ref={emblaRef}
         component="section"
         sx={{
           height: "100%",
           paddingBottom: "1rem",
+          borderRadius: {
+            lg: "0 0 1rem 1rem",
+          },
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.primary.contrastText,
           overflow: "hidden",

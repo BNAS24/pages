@@ -5,13 +5,15 @@ import { Book } from "@/app/_components/custom/book-related/BookShelf";
 export const UserData = async () => {
   const session = await getSession();
 
-  console.log("Session", session);
   if (!session || !session.user) {
     throw new Error("User session not found or user not authenticated");
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${session?.user.email}&sub=${session?.user.sub.split("|")[1]}`,{
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${
+      session?.user.email
+    }&sub=${session?.user.sub.split("|")[1]}`,
+    {
       cache: "no-store",
     }
   );
@@ -65,6 +67,7 @@ export const UserData = async () => {
               },
               rowGap: "1rem",
               paddingY: "1.5rem",
+              borderRadius: "1rem 1rem 1rem 1rem ",
               backgroundColor: "var(--palette-primary-main)",
             }}
           >
