@@ -25,22 +25,27 @@ export async function GET(req: NextRequest) {
     const bookCollection = db.collection("books");
 
     // Find user in db
-    const user = await userCollection.findOne({ email: email, sub: auth0Id });
+    const user = await userCollection.findOne({
+      _id: new mongoose.Types.ObjectId(auth0Id),
+    });
 
     if (!user) {
+      console.log("authId", auth0Id);
+      console.log("email", email);
       throw new Error("User not found");
     }
 
-   // Add auth0 user-specific id to db for better authentication if it doesn't exist yet
-   if (!user.sub) {
-    const updateResult = await userCollection.updateOne(
-      { email: email },
-      { $set: { sub: auth0Id } }
-    );
-    if (updateResult.modifiedCount === 0) {
-      throw new Error("Failed to update user with auth0Id");
+    // Add auth0 user-specific id to db for better authentication if it doesn't exist yet
+    if (!user.sub) {
+      const updateResult = await userCollection.updateOne(
+        { email: email },
+        { $set: { sub: auth0Id } }
+      );
+      
+      if (updateResult.modifiedCount === 0) {
+        throw new Error("Failed to update user with auth0Id");
+      }
     }
-  }
 
     // Manually populate the bookmarks
     const bookIds = user.bookmarks || [];

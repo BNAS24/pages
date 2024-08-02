@@ -5,6 +5,7 @@ import { Book } from "@/app/_components/custom/book-related/BookShelf";
 export const UserData = async () => {
   const session = await getSession();
 
+  console.log("Session", session);
   if (!session || !session.user) {
     throw new Error("User session not found or user not authenticated");
   }

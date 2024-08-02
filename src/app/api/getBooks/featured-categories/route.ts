@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&maxResults=40`
+      `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&maxResults=40`,
     );
 
     if (!response.ok) {
@@ -40,6 +40,8 @@ export async function GET(req: NextRequest) {
     }
 
     const books = await response.json();
+
+    console.log("books", books);
 
     return NextResponse.json([...books.items]);
   } catch (error: any) {

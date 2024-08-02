@@ -1,6 +1,5 @@
 "use client";
 import { Avatar, Container, Typography } from "@mui/material/";
-import { theme } from "../../../_styles/muiTheme";
 import BrandLogo from "../buttons/BrandLogo";
 import HamburgerMenu from "../buttons/HamburgerMenu";
 import { navigationLinks } from "@/app/_assets/NavLinks";

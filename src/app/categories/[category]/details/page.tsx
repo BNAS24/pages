@@ -19,7 +19,7 @@ export default function BookDetails() {
     // Fetch relevant book details
     const getBookDetails = async () => {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes/${bookId}`
+        `https://www.googleapis.com/books/v1/volumes/${bookId}`,
       );
 
       if (!response.ok) {
