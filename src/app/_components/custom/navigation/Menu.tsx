@@ -14,7 +14,11 @@ interface Option {
 
 const options: Option[] = [
   {
-    title: "Login",
+    title: "Sign In",
+    link: "/api/auth/login",
+  },
+  {
+    title: "Join Now",
     link: "/api/auth/login",
   },
 ];
