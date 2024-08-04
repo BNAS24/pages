@@ -134,6 +134,7 @@ const Bookmark = ({ bookDetails, category }: BookmarkProps) => {
           sx={{
             display: "flex",
             cursor: "pointer",
+            mt: "1rem",
           }}
         >
           {!bookSaved ? (

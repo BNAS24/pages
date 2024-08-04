@@ -6,6 +6,7 @@ import { navigationLinks } from "@/app/_assets/NavLinks";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useMediaQuery, useTheme } from "@mui/material";
+import LongMenu from "@/app/_components/custom/navigation/Menu";
 
 export const NavBar = () => {
   const { user } = useUser();
@@ -28,6 +29,8 @@ export const NavBar = () => {
       }}
     >
       <BrandLogo />
+
+      {/*List of links to book categories */}
       <Container
         sx={{
           display: {
@@ -65,14 +68,16 @@ export const NavBar = () => {
             </Link>
           ))}
       </Container>
+
+      {!user && isLargeScreen && <LongMenu />}
+      
       {user && isLargeScreen ? (
         <Avatar
           component={Link}
           href="/dashboard"
           src={user.picture!}
           alt={user.nickname!}
-        >
-        </Avatar>
+        ></Avatar>
       ) : (
         <HamburgerMenu />
       )}

@@ -187,9 +187,11 @@ export default function BookDetails() {
                   Buy
                 </Button>
               </Container>
+
+                          <Bookmark bookDetails={bookDetails} category={category}/>
             </Container>
 
-            <Bookmark bookDetails={bookDetails} category={category}/>
+            {/* <Bookmark bookDetails={bookDetails} category={category}/> */}
 
             {/*Book description */}
             <Container
