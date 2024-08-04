@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@mui/material";
 
-export const LogOut = () => {
+export const LogOut = ({topMargin}: any) => {
   const removeUser = () => localStorage.removeItem("user");
 
   return (
@@ -16,6 +16,7 @@ export const LogOut = () => {
           flexShrink: 0,
           minWidth: "92px",
           borderRadius: "2rem",
+          mt: topMargin ? topMargin : null,
         }}
       >
         Logout
