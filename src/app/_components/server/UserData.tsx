@@ -1,32 +1,70 @@
 import { Container, Typography } from "@mui/material";
 import { getSession } from "@auth0/nextjs-auth0";
 import { Book } from "@/app/_components/custom/book-related/BookShelf";
+import dbConnect from "@/app/_lib/db";
+import mongoose from "mongoose";
+
+const fetchUserData = async () => {
+  try {
+    console.log(
+      "Books and user data were fetched on server side with server component"
+    );
+    const session = await getSession();
+
+    if (!session || !session.user) {
+      throw new Error("User session not found or user not authenticated");
+    }
+
+    const auth0Id = session.user.sub.split("|")[1];
+    const userEmail = session.user.email;
+
+    await dbConnect();
+    const db = mongoose.connection.db;
+    const userCollection = db.collection("users");
+    const bookCollection = db.collection("books");
+
+    // Find user in db
+    const user = await userCollection.findOne({
+      email: userEmail,
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (!user.sub) {
+      const updateResult = await userCollection.updateOne(
+        { email: userEmail },
+        { $set: { sub: auth0Id } }
+      );
+
+      if (updateResult.modifiedCount === 0) {
+        throw new Error("Failed to update user with auth0Id");
+      }
+    }
+
+    const bookIds = user.bookmarks || [];
+    const books = await bookCollection
+      .find({ _id: { $in: bookIds } })
+      .toArray();
+    user.bookmarks = books;
+
+    return user;
+  } catch (error: any) {
+    console.error(error.message);
+    return null;
+  }
+};
 
 export const UserData = async () => {
-  const session = await getSession();
+  const user = await fetchUserData();
 
-  if (!session || !session.user) {
-    throw new Error("User session not found or user not authenticated");
+  if (!user) {
+    return <Typography variant="h6">Loading...</Typography>;
   }
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?email=${
-      session?.user.email
-    }&sub=${session?.user.sub.split("|")[1]}`,
-    {
-      cache: "no-store",
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(
-      "Something went wrong fetching additional user information"
-    );
-  }
-
-  const data = await response.json();
-  const bookmarks = data.bookmarks;
-
+  console.log(`Bookmarks(${user.bookmarks.length})`, user.bookmarks);
+  
   return (
     <Container
       disableGutters={true}
@@ -36,7 +74,7 @@ export const UserData = async () => {
         alignItems: "center",
       }}
     >
-      {bookmarks && (
+      {user.bookmarks && (
         <>
           <Typography
             component="h1"
@@ -51,10 +89,9 @@ export const UserData = async () => {
               color: "var(--palette-primary-main)",
             }}
           >
-            {`Welcome ${data.username}!`}
+            {`Welcome ${user.username}!`}
           </Typography>
 
-          {/* Show bookmarks saved by user */}
           <Container
             sx={{
               display: "grid",
@@ -71,8 +108,8 @@ export const UserData = async () => {
               backgroundColor: "var(--palette-primary-main)",
             }}
           >
-            {bookmarks.length > 0 ? (
-              bookmarks.map((book: any) => (
+            {user.bookmarks.length > 0 ? (
+              user.bookmarks.map((book: any) => (
                 <Book
                   key={book.googleBookId}
                   title={book.title}

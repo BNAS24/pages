@@ -3,10 +3,11 @@ import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Loading from "@/app/_components/custom/loading/Progress";
+import ProgressBar from "@/app/_components/custom/loading/Progress";
 import ActiveLastBreadcrumb from "@/app/_components/custom/navigation/Breadcrumbs";
 import { theme } from "@/app/_styles/muiTheme";
 import { Book } from "@/app/_components/custom/book-related/BookShelf";
+import LoadingPage from "@/app/_components/custom/loading/LoadingPage";
 
 export default function CategoryPage() {
   const [books, setBooks] = useState([]);
@@ -43,40 +44,7 @@ export default function CategoryPage() {
   }, [category]);
 
   if (books.length === 0) {
-    return (
-      <Container
-        disableGutters={true}
-        maxWidth={false}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-        }}
-      >
-        <Loading />
-        <Container
-          sx={{
-            flex: 1,
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            src="/icons/logo-64.png"
-            alt="splash screen logo"
-            height={64}
-            width={64}
-            style={{
-              marginBottom: "2rem",
-            }}
-          />
-        </Container>
-      </Container>
-    );
+    return <LoadingPage />;
   }
 
   return (

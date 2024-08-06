@@ -4,10 +4,9 @@ import { theme } from "./_styles/muiTheme";
 import { BookShelf } from "./_components/custom/book-related/BookShelf";
 import { useEffect, useState } from "react";
 import { BookCollection } from "./_types/types/bookCollectionTypes";
-import Loading from "./_components/custom/loading/Progress";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import LoadingPage from "@/app/_components/custom/loading/LoadingPage";
 
 export default function Home() {
   const [bookList, setBookList] = useState<BookCollection[]>([]);
@@ -51,40 +50,7 @@ export default function Home() {
   }, []);
 
   if (bookList.length === 0) {
-    return (
-      <Container
-        disableGutters={true}
-        maxWidth={false}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-        }}
-      >
-        <Loading />
-        <Container
-          sx={{
-            flex: 1,
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            src="/icons/logo-64.png"
-            alt="splash screen logo"
-            height={64}
-            width={64}
-            style={{
-              marginBottom: "2rem",
-            }}
-          />
-        </Container>
-      </Container>
-    );
+    return <LoadingPage />;
   }
 
   return (
