@@ -10,9 +10,7 @@ import { MenuProvider, useMenu } from "./_hooks/useBodyStyle";
 import { theme } from "./_styles/muiTheme";
 import "./globals.css";
 import { Footer } from "./_components/custom/navigation/Footer";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
-import Loading from "./loading";
-import { Suspense } from "react";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function RootLayout({
   children,
@@ -58,7 +56,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     >
       <NavBar />
       <SideMenu />
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      {children}
       <Footer />
     </Container>
   );
