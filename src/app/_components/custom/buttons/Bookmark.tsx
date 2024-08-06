@@ -50,7 +50,11 @@ const Bookmark = ({ bookDetails, category }: BookmarkProps) => {
   const toggleSaveBook = () => setBookSaved(!bookSaved);
 
   const vibrateBookmark = () => {
-    window.navigator.vibrate(200);
+    if ('vibrate' in window.navigator) {
+      window.navigator.vibrate(200);
+    } else {
+      console.warn('Vibration API not supported in this browser');
+    }
   };
 
   const saveBookmarkInDB = async ({
