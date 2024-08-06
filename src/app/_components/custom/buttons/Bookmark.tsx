@@ -49,6 +49,10 @@ const Bookmark = ({ bookDetails, category }: BookmarkProps) => {
 
   const toggleSaveBook = () => setBookSaved(!bookSaved);
 
+  const vibrateBookmark = () => {
+    window.navigator.vibrate(200);
+  };
+
   const saveBookmarkInDB = async ({
     userSub,
     bookDetails,
@@ -118,6 +122,7 @@ const Bookmark = ({ bookDetails, category }: BookmarkProps) => {
         category: category,
       });
       toggleSaveBook();
+      vibrateBookmark();
       !bookSaved
         ? saveBookmarkInDB({ userSub, bookDetails, category })
         : unsaveBookmarkInDB({ userSub, bookDetails });
